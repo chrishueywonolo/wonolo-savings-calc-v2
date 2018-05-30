@@ -1,0 +1,22 @@
+{
+  "name": "wonolo-savings-calc-v2",
+  "version": "1.0.0",
+  "description": "Savings Calculator version 2",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrishueywonolo/wonolo-savings-calc-v2.git"
+  },
+  "author": "Chris Huey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrishueywonolo/wonolo-savings-calc-v2/issues"
+  },
+  "homepage": "https://github.com/chrishueywonolo/wonolo-savings-calc-v2#readme",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
+}
