@@ -11,7 +11,41 @@ console.log("Starting app!");
 // adds to package.json file
 
 const _ = require('lodash');
+const fs = require('fs');
 const request = require('request');
+const express = require('express');
+const axios = require('axios');
+const app = express();
+const https = require('https');
+const http = require('http');
+const forceSsl = require('express-force-ssl');
+
+// const key = fs.readFileSync('./encryption/private.key');
+// const cert = fs.readFileSync( './encryption/primary.crt' );
+// const ca = fs.readFileSync( './encryption/intermediate.crt' );
+
+
+
+// var options = {
+//   key: key,
+//   cert: cert,
+//   ca: ca
+// };
+
+// app.use(forceSSl);
+
+app.get('/', (req, res) => {
+  res.send('Hello World')
+});
+ 
+
+// https.createServer(options, app).listen(443);
+// http.createServer(app).listen(80);
+
+
+app.listen(3000, () => {
+	console.log("Listening on port 3000!");
+});
 
 // nodemon <root file name>.js
 
@@ -38,11 +72,25 @@ const request = require('request');
 
 
 // make the request to Google API
-request({
-	url: geocodeUrl,
-	json: true
-}, (error, response, body) => {
-	console.log("printing body: " + JSON.stringify(body, undefined, 2));
+// request({
+// 	url: geocodeUrl,
+// 	json: true
+// }, (error, response, body) => {
+// 	console.log("printing body: " + JSON.stringify(body, undefined, 2));
+// })
+
+// GET request
+axios.get(<url>).then((response) => {
+	// throw new Error('<custom msg'>);
+	// response.data
 })
+.then((response) => {
+	// do something here
+})
+
+.catch((e) => {
+	// console.log(e);
+})
+
 
 // how to grab the form values and use them in app.js

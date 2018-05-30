@@ -1,0 +1,191 @@
+p {
+
+	color: #5b5b5b;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.question {
+	
+	padding: 20px 0;
+	border-bottom: 1px solid #EEEEEE;
+	align-items: center;
+
+}
+
+.question p {
+
+	font-family: 'Montserrat', sans-serif;
+
+}
+
+.submit-btn-container {
+	
+	padding: 20px 0px 40px 0px;
+	align-items: center;
+
+}
+
+#disclaimer {
+	
+	padding: 20px 0;
+	border-top: 1px solid #D1D2D4;
+
+}
+
+#hero-image {
+
+	/*height: 375px;*/
+	background: linear-gradient(
+		rgba(0, 0, 0, 0.40),
+		rgba(0, 0, 0, 0.40)
+		), url("./images/hero-image.jpg");
+	background-size: cover;
+
+
+}
+
+.section__heading {
+
+	color: #FFFFFF;
+	font-size: 70px;
+	font-family: 'Montserrat', sans-serif;
+
+}
+
+.section__subheading {
+
+	color: #FFFFFF;
+	font-size: 18px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 300;
+
+}
+
+.custom-select {
+
+	border: 1px solid #DDDDDD;
+
+}
+
+.form-control {
+
+	border: 1px solid #DDDDDD;
+
+}
+
+.staffing-agency-btn {
+
+	color: #5B5B5B;
+	background-color: #F4F4F4;
+	border-color: #DDDDDD;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+
+}
+
+.calculate-btn {
+
+	border-radius: 0px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+/*	padding-top: 2%;
+	padding-bottom: 2%;*/
+
+}
+
+
+#resultsContainer {
+
+	margin-bottom: 50px;
+
+}
+
+.results__heading {
+
+	font-size: 22px;
+	font-weight: 600;
+
+}
+
+.results__subheading {
+
+
+}
+
+
+#estimatedSavings {
+
+    background-color: #2980b9;
+    padding: 5%;
+    text-align: center;
+    margin-bottom: 5%;
+
+}
+
+#fillRate {
+
+	background-color: #1abc9c;
+    padding: 5%;
+    text-align: center;
+    margin-bottom: 5%;
+
+}
+
+#estimatedSavings > p {
+
+	color: #ffffff;
+
+}
+
+#estimatedSavings > h3 {
+
+	color: #ffffff;
+    font-size: 50px;
+    font-weight: 800;
+
+}
+
+#fillRate > p {
+
+	color: #ffffff;
+	font-size: ;
+
+}
+
+#fillRate > h3 {
+
+	color: #ffffff;
+    font-size: 70px;
+    font-weight: 800;
+
+}
+
+#saveStaffingBtn {
+
+	font-family: 'Montserrat', sans-serif;
+	padding: 10px 15px 10px 15px;
+	font-size: 12px;
+	font-weight: 600;
+	border-radius: 0px;
+}
+
+.divider {
+
+	border-bottom: 1px solid #95a5a6;
+	padding-bottom: 20px;
+}
+
+#industry {
+
+	font-size: 1rem;
+	height: auto;
+
+}
+
+#staffingAgency {
+
+	font-size: 1rem;
+	height: auto;
+
+}
