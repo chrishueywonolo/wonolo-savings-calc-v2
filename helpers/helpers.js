@@ -29,38 +29,40 @@ asyncAdd(5,7).then((res) => {
 
 var googleGeocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}`;
 
-axios.get(googleGeocodeUrl).then((response) => {
-	// response.data
-	var city;
-	var state_code;
+axios.get(googleGeocodeUrl)
 
-	for(var i = 0; i < data.results[0].address_components.length; i++){
-		var component = data.results[0].address_components[i];
+	.then((response) => {
+		// response.data
+		var city;
+		var state_code;
 
-        switch(component.types[0]) {
-            case 'locality':
-                city = component.long_name;
-                break;
-            case 'administrative_area_level_1':
-                state_code = component.short_name;
-                break;
-            
-        }
-	}
-	var minimumWageUrl = `https://typ3wonolo:wontyp3y17@wonolo.herokuapp.com/get_minimum_wage?city=${city}&state_code=${state_code}`;
+		for(var i = 0; i < data.results[0].address_components.length; i++){
+			var component = data.results[0].address_components[i];
 
-	axios.get(minimumWageUrl).then((response) => {
+	        switch(component.types[0]) {
+	            case 'locality':
+	                city = component.long_name;
+	                break;
+	            case 'administrative_area_level_1':
+	                state_code = component.short_name;
+	                break;
+	            
+	        }
+		}
+		var minimumWageUrl = `https://typ3wonolo:wontyp3y17@wonolo.herokuapp.com/get_minimum_wage?city=${city}&state_code=${state_code}`;
 
-		// minWage =
+		axios.get(minimumWageUrl).then((response) => {
 
-		var fillRateUrl = `https://wonolo-ml.herokuapp.com/savcal?auth_token=19bd75e4-659e-4b99-b4dc-68d86e51efdc&model=15_1_saving_calculator&category=${industry}&zip=${zipcode}&rate=${hourlyWage}`;
+			// minWage =
+
+			var fillRateUrl = `https://wonolo-ml.herokuapp.com/savcal?auth_token=19bd75e4-659e-4b99-b4dc-68d86e51efdc&model=15_1_saving_calculator&category=${industry}&zip=${zipcode}&rate=${hourlyWage}`;
+		})
+
 	})
-
-})
-.then((response) => {
-	// do something here
-
-})
+	.catch((error) => {
+		// do something here
+		console.log(error);
+	})
 
 
 

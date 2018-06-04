@@ -18,7 +18,7 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
     	$(document).ready(function(){
@@ -30,8 +30,28 @@
     		var minimumWageUrl, convertedZip, fillRate, city, state_code, savingsAmount;
     		var submissionObj;
     		
+    		$("#staffingAgency").change(function() {
+    			staffingAgency = $(this).val();
+    			console.log(staffingAgency);
+    		});
+    		$("#industry").change(function() {
+    			industry = $(this).val();
+    			console.log(industry);
+    		});
+    		$("#zipcode").change(function() {
+    			zipcode = $(this).val();
+    			console.log(zipcode);
+    		});
+    		$("#billable_hourly_rate").change(function() {
+    			billableRate = $(this).val();
+    			console.log(billableRate);
+    		});
+    		$("#numOfWorkers").change(function() {
+    			numOfWorkers = $(this).val();
+    			console.log(numOfWorkers);
+    		});
 
-    		$("input:radio[name='agencyBool']").change(function() {
+			$("input:radio[name='agencyBool']").change(function() {
 
     			if($(this).val() == "yes") {
 
@@ -42,167 +62,45 @@
     			}
 
     			useStaffingAgency = $(this).val();
-    			console.log(useStaffingAgency);
+    			// console.log(useStaffingAgency);
 
     		});
 
-    		$("#staffingAgency").change(function() {
-    			staffingAgency = $(this).val();
-    			console.log(staffingAgency);
-    		});
 
-
-    		$("#industry").change(function() {
-    			industry = $(this).val();
-    			console.log(industry);
-    		});
-
-    		$("#zipcode").change(function() {
-    			zipcode = $(this).val();
-    			console.log(zipcode);
-    		});
-
-    		$("#billable_hourly_rate").change(function() {
-    			billableRate = $(this).val();
-    			console.log(billableRate);
-    		});
-
-    		$("#numOfWorkers").change(function() {
-    			numOfWorkers = $(this).val();
-    			console.log(numOfWorkers);
-    		});
-
-
-    		// onSubmit
-    		$( "#savingsCalc" ).submit(function( event ) {
-
-    			console.log("Billable Rate: " + billableRate);
-
+    		$("#savingsCalc").submit(function(event){
+    			
 				event.preventDefault();
+    			calculateSavings();
+    			
+    		})
 
-	  	    	
-	  	    	// ***** GEOCODE & MIN WAGE ***** //
-		    	var googleGeocode = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}`;
-		    	console.log("the url is " + googleGeocode)
+    		function calculateSavings(e){
+    			console.log("calculating savings now...")
+    			axios.post('/', {
+    				industry: industry,
+					zipcode: zipcode,
+					billableRate: billableRate,
+					staffingAgency: staffingAgency,
+					numOfWorkers: numOfWorkers,
+    			})
+    			.then((res) => {
 
-
-				var getGeocode = $.ajax({
-						url: googleGeocode,
-						type: "GET",
-						dataType: "json",
-
-					}),
-
-					getMinWage = getGeocode.then(function(data){
-
-						var city;
-						var state_code;
-
-						for(var i = 0; i < data.results[0].address_components.length; i++){
-							var component = data.results[0].address_components[i];
-
-				            switch(component.types[0]) {
-				                case 'locality':
-				                    city = component.long_name;
-				                    break;
-				                case 'administrative_area_level_1':
-				                    state_code = component.short_name;
-				                    break;
-				                
-				            }
-						}
-						console.log(city,state_code);
-						var minimumWageUrl = `https://typ3wonolo:wontyp3y17@wonolo.herokuapp.com/get_minimum_wage?city=${city}&state_code=${state_code}`;
-
-						return $.ajax({
-				    		url: minimumWageUrl,
-				    		type: 'GET',
-				    		dataType: 'json',
-				    		
-				    	});
-
-					})
+    				// use res.body.data values
+    				// to populate the dynamic html
+    				
+    				console.log('CalculateSavings() response');
+    				console.log(res);
+    			})
+    			.catch((err) => {
+    				console.log("an error has occured in calculate savings");
+    				console.log(err);
+    			})
 
 
-				// execute getMinWage
-				var hourlyWage;
-
-				getMinWage.done(function(data){
-					console.log("minimum wage value: " + data);
-					hourlyWage = billableRate * .6;
-					minimumWageValue = data.minimum_wage;
-
-					console.log("Industry is: " + industry);
-					console.log("Zipcode is: " + zipcode);
-					console.log("Hourly Wage is: " + hourlyWage);
-					// ****** FILL RATE ****** //
-			    	var fillRateUrl = `https://wonolo-ml.herokuapp.com/savcal?auth_token=19bd75e4-659e-4b99-b4dc-68d86e51efdc&model=15_1_saving_calculator&category=${industry}&zip=${zipcode}&rate=${hourlyWage}`;
-
-			    	var getFillRate = $.ajax({
-				    		url: fillRateUrl,
-				    		type: 'GET',
-				    		dataType: 'json',
-
-				    	})
-
-			    	// execute getFillRate
-		    		getFillRate.done(function(data){
-		    			console.log("fill rate value: " + data);
-			    		fillRate = data.fill_rate;
-
-			    		// display results
-			    		checkResults(hourlyWage, minimumWageValue, fillRate);
-			    		delayResults(showResults);
-		    		});
+    			
+    		}
 
 
-		    		
-				});
-
-				
-
-
-
-			}); // onSubmit() end
-
-    		function checkResults(hourlyWage, minimumWageValue, fillRate){
-
-				// Check Minimum Wage
-				// Show savings amount
-				if(hourlyWage > minimumWageValue){
-					// continue
-					var wonoloFee = 1.4;
-			    	currentCost = (billableRate * numOfWorkers * 8);
-					wonoloCost = ((hourlyWage * wonoloFee) * numOfWorkers * 8);
-
-
-			    	savingsAmount = currentCost - wonoloCost;
-			    	// what happens if wonoloCost > currentCost
-			    	$("#savingsAmount").text(savingsAmount);
-
-				} else {
-					// throw error
-					console.log("error");
-				}
-
-				// Check Fill Rate
-				var fillRateMsg;
-				
-	    		// change the messaging depending on the range the fill rate is in
-	    		if(fillRate < 0.8){
-
-	    			fillRateMsg = "";
-	    			$("#fillRateValue").text("85");
-	    			$("#fillRateMsg").text(fillRateMsg);
-
-	    		} else {
-
-	    			fillRateMsg = "";
-	    			$("#fillRateValue").text(fillRate);
-	    			$("#fillRateMsg").text(fillRateMsg);
-	    		}
-
-			}
 
 			function showResults(){
 
@@ -291,7 +189,7 @@
 
 			<!-- formContainer -->
 			<div class="col-12" id="formContainer" style="transition: all 2s;">
-				<form id="savingsCalc" action="">
+				<form id="savingsCalc" method="post">
 					<div class="row question">
 						<div class="col-12 col-md-6">
 							<!-- Mobile Screen -->
@@ -300,7 +198,7 @@
 							<p class="d-none d-sm-block mb-0">What industry are you in?</p>
 						</div>
 						<div class="col-12 col-md-6">
-							<select id="industry" class="custom-select custom-select-lg mb-0 col-md-6 float-md-right">
+							<select id="industry" class="custom-select custom-select-lg mb-0 col-md-6 float-md-right" name="industry">
 								<option value="None" selected>Select Industry</option>
 								<option value="Fulfillment_Warehousing">Warehouse/Fulfillment</option>
 								<option value="Delivery">Delivery</option>
@@ -326,7 +224,7 @@
 
 						</div>
 						<div class="col-12 col-md-6">
-							<input type="text" pattern="[0-9]{5}" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-6 float-md-right" id="zipcode" placeholder="ex. 94012" style="transition: all 2s" required>
+							<input type="text" pattern="[0-9]{5}" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-6 float-md-right" id="zipcode" name="zipcode" placeholder="ex. 94012" style="transition: all 2s" required>
 						</div>
 						
 					</div>
@@ -344,7 +242,7 @@
 							  <div class="input-group-prepend">
 							    <span class="input-group-text">$</span>
 							  </div>
-							  <input type="text" pattern="[0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="billable_hourly_rate" class="form-control" required>
+							  <input type="text" pattern="[0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="billable_hourly_rate" name="billable_rate" class="form-control" required>
 							</div>
 
 						</div>
@@ -375,7 +273,7 @@
 					<div class="row question" id="agencySelection" hidden="true">
 						
 						<div class="col-12 col-md-6 offset-md-6" style="transition: all 2s;">
-							<select id="staffingAgency" class="custom-select custom-select-lg mb-0 col-md-6 float-md-right" required>
+							<select id="staffingAgency" class="custom-select custom-select-lg mb-0 col-md-6 float-md-right" name="staffcingAgency" required>
 								<option value=" ">Select Staffing Agency</option>
 						        <option value="Adecco">Adecco</option>
 						        <option value="Aerotek">Aerotek</option>
@@ -411,7 +309,7 @@
 							  <div class="input-group-prepend">
 							    <span class="input-group-text"><i class="fas fa-male fa-lg"></i></span>
 							  </div>
-							  <input type="text" pattern="[0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-12 float-md-right" id="numOfWorkers" placeholder="ex. 10" required>
+							  <input type="text" pattern="[0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-12 float-md-right" id="numOfWorkers" name="numOfWorkers" placeholder="ex. 10" required>
 							</div>
 							
 						</div>
