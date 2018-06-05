@@ -7,7 +7,9 @@ const routes = require('./routes/routes.js');
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+	type: "*/*"
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 hbs.registerPartials(__dirname + '/views/partials');

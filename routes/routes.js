@@ -62,7 +62,8 @@ router.post('/', (req, res) => {
 
 				data: {},
 				headers: {
-					'Content-Type': 'application/json text/html',
+					'Accept': '*/*',
+					'Content-Type': "text/plain; charset=utf-8; application/json; text/html",
 					'Accept-Charset': '*',
 
 				}
