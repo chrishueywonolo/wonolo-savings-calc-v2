@@ -88,7 +88,7 @@ router.post('/', (req, res) => {
 				.then((response) => {
 
 					console.log("grabbed fill rate");
-					
+
 					var wonoloFee = 1.4;
 					var standard_working_hours = 8;
 			    	var currentCost = (billableRate * numOfWorkers * standard_working_hours);
@@ -103,22 +103,29 @@ router.post('/', (req, res) => {
 					}
 
 
-					res.render('index.hbs', {
-						data: {
+					var result = {
+						fill_rate: fill_rate_val,
+						savings: savingsAmount
+					}
 
-							fill_rate: fill_rate_val,
-							savings: savingsAmount,
+					return result;
 
-						},
-						errors: {
-							message: {
-								msg: 'An error has occurred'
-							},
-							email: {
-								msg: 'Email invalid'
-							}
-						}
-					})
+					// res.render('index.hbs', {
+					// 	data: {
+
+					// 		fill_rate: fill_rate_val,
+					// 		savings: savingsAmount,
+
+					// 	},
+					// 	errors: {
+					// 		message: {
+					// 			msg: 'An error has occurred'
+					// 		},
+					// 		email: {
+					// 			msg: 'Email invalid'
+					// 		}
+					// 	}
+					// })
 
 
 				})
