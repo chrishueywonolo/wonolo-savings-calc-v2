@@ -108,7 +108,7 @@ router.post('/', (req, res) => {
 						savings: savingsAmount
 					}
 
-					return result;
+					res.send(result);
 
 					// res.render('index.hbs', {
 					// 	data: {
