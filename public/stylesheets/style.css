@@ -38,7 +38,7 @@ p {
 	background: linear-gradient(
 		rgba(0, 0, 0, 0.40),
 		rgba(0, 0, 0, 0.40)
-		), url("./images/hero-image.jpg");
+		), url("../images/hero-image.jpg");
 	background-size: cover;
 
 
