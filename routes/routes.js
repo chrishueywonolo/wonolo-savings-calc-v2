@@ -98,19 +98,34 @@ router.post('/', (req, res) => {
 					var savingsAmount = (currentCost - wonoloCost)*avg_working_days;
 
 					var fill_rate_val;
+					var fill_rate_msg = "";
 					fill_rate_percentage = response.data;
 
 					if(fill_rate_percentage < .85){
 						fill_rate_val = .85;
+						fill_rate_msg = "";
+					} else if(.80 < fill_rate_percentage <= 1) {
+						fill_rate_msg = "";
 					}
+
+					var savings_msg = ["Your CFO is smiling right now.", "Wow, you'll be saving a lot.", "I'm not a clairvoyant, but I think I see a promotion in your future.","Winner winner, chicken dinner!","Pat yourself on the back.",
+
+					]
+
+					var rand_num = Math.floor(Math.random()*5);
+					var selected_savings_msg = savings_msg[rand_num]
 
 
 					console.log("Fill rate val: " + fill_rate_val);
 					console.log("Savings amount: " + savingsAmount)
 
 					var result = {
+
 						fill_rate: fill_rate_val,
-						savings: savingsAmount
+						fill_rate_msg: fill_rate_msg,
+						savings: savingsAmount,
+						savings_msg: selected_savings_msg,
+
 					}
 
 					res.send(result);

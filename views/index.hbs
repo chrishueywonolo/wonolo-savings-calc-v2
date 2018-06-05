@@ -90,14 +90,21 @@
     				// to populate the dynamic html
 
     				console.log('CalculateSavings() response');
-    				console.log(res);
+    				// console.log(res);
 
     				var total_savings_amount = Math.round(res.data.savings);
     				total_savings_amount = total_savings_amount.toLocaleString();
+    				var savings_msg = res.data.savings_msg;
+
     				var fill_rate_percent = parseFloat(res.data.fill_rate)*100;
+    				var fill_rate_msg = res.data.fill_rate_msg;
 
     				$("#savingsAmount").text(total_savings_amount);
+    				$("#savings_msg").text(savings_msg);
+
     				$("#fillRateValue").text(fill_rate_percent);
+    				$("#fillRateMsg").text(fill_rate_msg);
+
 
     				delayResults(showResults);
 
@@ -167,8 +174,8 @@
 			<div class="col-md-4" id="resultsContainer" style="display:none;">
 				<div class="row">
 					<!-- Headline + subheadline -->
-					<p class="results__heading">Your estimated annual savings with Wonolo</p>
-					<p class="results__subheading">Your CFO is smiling right now</p>
+					<p class="results__heading">Estimated Annual Savings</p>
+					<p class="results__subheading"><span id="savings_msg"></span></p>
 				</div>
 				<div class="row">
 					<!-- $avings Amount -->
@@ -180,7 +187,7 @@
 				<div class="row">
 					<!-- Fill Rate -->
 					<div class="col-12" id="fillRate">
-						<p>Fill Rate</p>
+						<p>Fill Rate<i class="fas fa-info-circle" data-toggle="popover" title="Fill Rate" data-content="Fill Rate is estimated based on your region, industry, hourly wage, and Wonolo's historical performance."></i></p>
 						<h3><span id="fillRateValue"></span>%</h3>
 						<p><span id="fillRateMsg">You may need some help to make a plan that will work for you. We have advisors who can help you at no charge. Schedule an appointment.</span></p>
 					</div>
@@ -245,7 +252,7 @@
 							<!-- Mobile Screen -->
 							<p class="d-block d-sm-none text-center">Billable Rate</p>
 							<!-- Larger than mobile -->
-							<p class="d-none d-sm-block mb-0">What is your hourly billable rate for 1 worker?</p>
+							<p class="d-none d-sm-block mb-0">What is your hourly billable rate for 1 worker?<i class="fas fa-info-circle" data-toggle="popover" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></i></p>
 						</div>
 						<div class="col-12 col-md-6 no-gutters">
 							
