@@ -114,23 +114,6 @@ router.post('/', (req, res) => {
 
 					res.send(result);
 
-					// res.render('index.hbs', {
-					// 	data: {
-
-					// 		fill_rate: fill_rate_val,
-					// 		savings: savingsAmount,
-
-					// 	},
-					// 	errors: {
-					// 		message: {
-					// 			msg: 'An error has occurred'
-					// 		},
-					// 		email: {
-					// 			msg: 'Email invalid'
-					// 		}
-					// 	}
-					// })
-
 
 				})
 				.catch((error) => {
