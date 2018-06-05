@@ -93,7 +93,7 @@
     				console.log(res);
 
     				var total_savings_amount = Math.round(parseInt(res.data.savings));
-    				var fill_rate_percent = parseInt(res.data.fill_rate)*100;
+    				var fill_rate_percent = parseFloat(res.data.fill_rate)*100;
 
     				$("#savingsAmount").text(total_savings_amount);
     				$("#fillRateValue").text(fill_rate_percent);
