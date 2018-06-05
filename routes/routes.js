@@ -56,11 +56,19 @@ router.post('/', (req, res) => {
 			console.log("the city is: " + city);
 			console.log("the state is: " + state_code);
 
-			var minimumWageUrl = `https://typ3wonolo:wontyp3y17@wonolo.herokuapp.com/get_minimum_wage?city=${city}&state_code=${state_code}`;
+			var minimumWageUrl = `https://wonolo.herokuapp.com/get_minimum_wage?city=${city}&state_code=${state_code}`;
 
-			axios.get(minimumWageUrl)
+			axios.get(minimumWageUrl, {
+
+				auth: {
+					username: 'typ3wonolo',
+					password: 'wontyp3y17',
+				}
+
+			})
 
 			.then((response) => {
+
 
 
 				var minimum_wage = response.minimum_wage;
