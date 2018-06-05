@@ -88,6 +88,7 @@ router.post('/', (req, res) => {
 				.then((response) => {
 
 					console.log("grabbed fill rate");
+					console.log(response);
 
 					var wonoloFee = 1.4;
 					var standard_working_hours = 8;
@@ -102,6 +103,9 @@ router.post('/', (req, res) => {
 						fill_rate_val = .85;
 					}
 
+
+					console.log("Fill rate val: " + fill_rate_val);
+					console.log("Savings amount: " + savingsAmount)
 
 					var result = {
 						fill_rate: fill_rate_val,
