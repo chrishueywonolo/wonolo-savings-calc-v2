@@ -26,7 +26,7 @@
     	$(document).ready(function(){
     		console.log("page is ready!");
 
-    		$('[data-toggle="popover"]').popover()
+    		$('.info-popover').popover(options)
 
     		// set the variables
     		var industry, zipcode, billableRate, useStaffingAgency, staffingAgency, numOfWorkers;
@@ -189,7 +189,7 @@
 				<div class="row">
 					<!-- Fill Rate -->
 					<div class="col-12" id="fillRate">
-						<p>Fill Rate<i class="fas fa-info-circle" data-toggle="popover" title="Fill Rate" data-content="Fill Rate is estimated based on your region, industry, hourly wage, and Wonolo's historical performance."></i></p>
+						<p>Fill Rate<i class="fas fa-info-circle" data-toggle="popover" data-trigger="hover" title="Fill Rate" data-content="Fill Rate is estimated based on your region, industry, hourly wage, and Wonolo's historical performance."></i></p>
 						<h3><span id="fillRateValue"></span>%</h3>
 						<p><span id="fillRateMsg">You may need some help to make a plan that will work for you. We have advisors who can help you at no charge. Schedule an appointment.</span></p>
 					</div>
@@ -254,7 +254,7 @@
 							<!-- Mobile Screen -->
 							<p class="d-block d-sm-none text-center">Billable Rate</p>
 							<!-- Larger than mobile -->
-							<p class="d-none d-sm-block mb-0">What is your hourly billable rate for 1 worker?<i class="fas fa-info-circle" data-toggle="popover" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></i></p>
+							<p class="d-none d-sm-block mb-0">What is your hourly billable rate for 1 worker?<i class="fas fa-info-circle info-popover" data-trigger="hover" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></i></p>
 						</div>
 						<div class="col-12 col-md-6 no-gutters">
 							
