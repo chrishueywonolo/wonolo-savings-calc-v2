@@ -92,9 +92,10 @@ router.post('/', (req, res) => {
 
 					var wonoloFee = 1.4;
 					var standard_working_hours = 8;
+					var avg_working_days = 261;
 			    	var currentCost = (billableRate * numOfWorkers * standard_working_hours);
 					var wonoloCost = ((hourlyWage * wonoloFee) * numOfWorkers * standard_working_hours);
-					var savingsAmount = currentCost - wonoloCost;
+					var savingsAmount = (currentCost - wonoloCost)*avg_working_days;
 
 					var fill_rate_val;
 					fill_rate_percentage = response.data;
