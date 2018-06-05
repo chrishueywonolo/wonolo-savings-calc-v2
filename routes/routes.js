@@ -87,6 +87,8 @@ router.post('/', (req, res) => {
 
 				.then((response) => {
 
+					console.log("grabbed fill rate");
+					
 					var wonoloFee = 1.4;
 					var standard_working_hours = 8;
 			    	var currentCost = (billableRate * numOfWorkers * standard_working_hours);
