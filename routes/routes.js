@@ -60,6 +60,11 @@ router.post('/', (req, res) => {
 
 			axios.get(minimumWageUrl, {
 
+				data: {},
+				headers: {
+					'Content-Type': 'application/json'
+				}
+
 			})
 
 			.then((response) => {
