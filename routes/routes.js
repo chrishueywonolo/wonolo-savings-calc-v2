@@ -263,6 +263,8 @@ router.post('/', (req, res) => {
 router.post('/contact-us', (req,res) => {
 
 
+	console.log('inside the contact-us route...');
+
 	var currentUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
 	// build the data object
