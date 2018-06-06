@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const querystring = require('querystring');
+const bodyParser = require('body-parse');
 
+const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 
 router.get('/', (req, res) => {
@@ -168,7 +170,7 @@ router.post('/', (req, res) => {
 
 
 // when user submits modal form
-router.post('/contact-us', (req,res) => {
+router.post('/contact-us', urlencodedParser, (req,res) => {
 
 	var first_name = req.body.first_name;
 	var last_name = req.body.last_name;
@@ -185,6 +187,12 @@ router.post('/contact-us', (req,res) => {
 	    'phone': phone,
 	    'company': company,
 	    'jobtitle': position,
+	    'hs_context': JSON.stringify({
+	        "hutk": req.cookies.hubspotutk,
+	        "ipAddress": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+	        "pageUrl": "http://www.example.com/form-page",
+	        "pageName": "Example Title"
+	    })
     })
 
     var options = {
