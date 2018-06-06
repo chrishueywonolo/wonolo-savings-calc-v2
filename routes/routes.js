@@ -97,16 +97,22 @@ router.post('/', (req, res) => {
 					var wonoloCost = ((hourlyWage * wonoloFee) * numOfWorkers * standard_working_hours);
 					var savingsAmount = (currentCost - wonoloCost)*avg_working_days;
 
-					var fill_rate_val;
+					var real_fill_rate;
 					var fill_rate_msg = "";
 					fill_rate_percentage = response.data;
 
 					if(fill_rate_percentage < .85){
-						fill_rate_val = .85;
+
+						real_fill_rate = .85;
 						fill_rate_msg = "";
-					} else if(.80 < fill_rate_percentage <= 1) {
+
+					} else {
+
+						real_fill_rate = fill_rate_percentage;
 						fill_rate_msg = "";
 					}
+
+					
 
 					var savings_msg = ["Your CFO is smiling right now.", "Wow, you'll be saving a lot.", "I'm not a clairvoyant, but I think I see a promotion in your future.","Winner winner, chicken dinner!","Pat yourself on the back.",
 
@@ -116,12 +122,12 @@ router.post('/', (req, res) => {
 					var selected_savings_msg = savings_msg[rand_num]
 
 
-					console.log("Fill rate val: " + fill_rate_val);
+					console.log("Fill rate val: " + real_fill_rate);
 					console.log("Savings amount: " + savingsAmount)
 
 					var result = {
 
-						fill_rate: fill_rate_val,
+						fill_rate: real_fill_rate,
 						fill_rate_msg: fill_rate_msg,
 						savings: savingsAmount,
 						savings_msg: selected_savings_msg,
