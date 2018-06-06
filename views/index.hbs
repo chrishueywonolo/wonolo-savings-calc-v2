@@ -261,11 +261,11 @@
 							<!-- Mobile Screen -->
 							<p class="d-block d-sm-none text-center">Zipcode</p>
 							<!-- Larger than mobile -->
-							<p class="d-none d-sm-block mb-0">What Zipcode would you like to post jobs in?</p>
+							<p class="d-none d-sm-block mb-0">What zipcode would you like to post jobs in?</p>
 
 						</div>
 						<div class="col-12 col-md-6">
-							<input type="text" pattern="[0-9]{5}" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-6 float-md-right" id="zipcode" name="zipcode" placeholder="ex. 94012" style="transition: all 2s" required>
+							<input type="text" pattern="[0-9]{5}" maxlength="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-6 float-md-right" id="zipcode" name="zipcode" placeholder="ex. 94012" style="transition: all 2s" required>
 						</div>
 						
 					</div>
@@ -273,7 +273,7 @@
 						
 						<div class="col-12 col-md-6">
 							<!-- Mobile Screen -->
-							<p class="d-block d-sm-none text-center">Billable Rate</p>
+							<p class="d-block d-sm-none text-center">Billable Rate<span class="fas fa-info-circle" style="margin-left:10px" data-toggle="popover" data-trigger="hover" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></span></p>
 							<!-- Larger than mobile -->
 							<p class="d-none d-sm-block mb-0">What is your hourly billable rate for 1 worker?<span class="fas fa-info-circle" style="margin-left:10px" data-toggle="popover" data-trigger="hover" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></span></p>
 						</div>

@@ -36,6 +36,13 @@ router.post('/', (req, res) => {
 			console.log("Response from Google Maps API: ");
 			console.log(response.data.results);
 
+			// error handling for when invalid zipcode/zero_results
+			if(response.data.status === "ZERO_RESULTS"){
+
+				var error_message = "Sorry, we couldn't find locate that zipcode"
+				res.send(error_message);
+			}
+
 			var city;
 			var state_code;
 
