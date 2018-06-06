@@ -168,94 +168,94 @@ router.post('/', (req, res) => {
 
 
 // when user submits modal form
-// router.post('/contact-us', (req,res) => {
+router.post('/contact-us', (req,res) => {
 
-// 	var first_name = req.body.first_name;
-// 	var last_name = req.body.last_name;
-// 	var email = req.body.email;
-// 	var phone = req.body.phone;
-// 	var company = req.body.company;
-// 	var position = req.body.position;
-// 	var industry = req.body.industry;
+	var first_name = req.body.first_name;
+	var last_name = req.body.last_name;
+	var email = req.body.email;
+	var phone = req.body.phone;
+	var company = req.body.company;
+	var position = req.body.position;
+	var industry = req.body.industry;
 
-// 	var postData = querystring.stringify({
-// 	    'email': email,
-// 	    'firstname': first_name,
-// 	    'lastname': last_name,
-// 	    'phone': phone,
-// 	    'company': company,
-// 	    'jobtitle': position,
-//     })
+	var postData = querystring.stringify({
+	    'email': email,
+	    'firstname': first_name,
+	    'lastname': last_name,
+	    'phone': phone,
+	    'company': company,
+	    'jobtitle': position,
+    })
 
-//     var options = {
-// 		hostname: 'forms.hubspot.com',
-// 		path: `/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be`,
-// 		method: 'POST',
-// 		headers: {
-// 			'Content-Type': 'application/x-www-form-urlencoded',
-// 			'Content-Length': postData.length
-// 		},
-// 		data: postData
-// 	}
+    var options = {
+		hostname: 'forms.hubspot.com',
+		path: `/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be`,
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Length': postData.length
+		},
+		data: postData
+	}
 
-// 	axios.post(options)
+	axios.post(options)
 
-// 	.then((res) => {
+	.then((res) => {
 
-// 		var case_study_form_id = 'dae05afb-4480-4288-b4d6-1f44604cd1b5';
+		var case_study_form_id = 'dae05afb-4480-4288-b4d6-1f44604cd1b5';
 
-// 		if(industry === 'Delivery'){
+		if(industry === 'Delivery'){
 
-// 			case_study_form_id = 'ea293002-5ffd-4473-9b71-8c6da574b3d6';
+			case_study_form_id = 'ea293002-5ffd-4473-9b71-8c6da574b3d6';
 
-// 		} else if(industry === 'Event_Staff') {
+		} else if(industry === 'Event_Staff') {
 
-// 			case_study_form_id = '7d445f78-c19a-4c52-89e3-88cb0f034a51';
+			case_study_form_id = '7d445f78-c19a-4c52-89e3-88cb0f034a51';
 
-// 		} else if(industry === 'Merchandising') {
+		} else if(industry === 'Merchandising') {
 
-// 			case_study_form_id = '48fa635f-3dd6-417d-bbde-9b889c376f83';
+			case_study_form_id = '48fa635f-3dd6-417d-bbde-9b889c376f83';
 
-// 		}
+		}
 
-// 		var case_study_options = {
-// 			hostname: 'forms.hubspot.com',
-// 			path: `/uploads/form/v2/1862878/${case_study_form_id}`,
-// 			method: 'POST',
-// 			headers: {
-// 				'Content-Type': 'application/x-www-form-urlencoded',
-// 				'Content-Length': postData.length
-// 			},
-// 			data: postData
-// 		}
+		var case_study_options = {
+			hostname: 'forms.hubspot.com',
+			path: `/uploads/form/v2/1862878/${case_study_form_id}`,
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Content-Length': postData.length
+			},
+			data: postData
+		}
 
-// 		axios.post(case_study_options)
+		axios.post(case_study_options)
 
-// 		.then((res) => {
-
-
-// 			res.send(true);
+		.then((res) => {
 
 
-// 		})
-// 		.catch((error) => {
-
-// 			console.log("There was an error adding user to case study form");
-// 			console.log(error);
-
-// 		})
+			res.send(true);
 
 
-// 	})
-// 	.catch((error) => {
+		})
+		.catch((error) => {
 
-// 		console.log("There was an error sending to HubSpot");
-// 		console.log(error);
+			console.log("There was an error adding user to case study form");
+			console.log(error);
 
-// 	})
+		})
 
 
-// });
+	})
+	.catch((error) => {
+
+		console.log("There was an error sending to HubSpot");
+		console.log(error);
+
+	})
+
+
+});
 
 
 
