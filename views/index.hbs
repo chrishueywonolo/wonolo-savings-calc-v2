@@ -31,8 +31,7 @@
 
     		// set the variables
     		var industry, zipcode, billableRate, useStaffingAgency, staffingAgency, numOfWorkers;
-    		var minimumWageUrl, convertedZip, fillRate, city, state_code, savingsAmount;
-    		var submissionObj;
+    		var minimumWageUrl, fillRate, city, state_code, savingsAmount;
     		
     		$("#staffingAgency").change(function() {
     			staffingAgency = $(this).val();
@@ -78,7 +77,7 @@
     			
     		})
 
-    		function calculateSavings(e){
+    		function calculateSavings(){
     			console.log("calculating savings now...")
     			axios.post('/', {
     				industry: industry,
