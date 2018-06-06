@@ -209,6 +209,6 @@ p {
 
 .info-icon {
 
-	background-image: url("../images/info-icon.png");
+	background: url("../images/info-icon.png");
 
 }
