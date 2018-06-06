@@ -179,46 +179,42 @@
     			var position = $(this).val();
     		});
 
-			$("#read-case-study").submit(function(event){
 
+
+
+			$("#read-case-study").submit(function(event){
 
 				event.preventDefault();
 				submitContact();
-
 
 			});
 
 
 			function submitContact(){
+
+
+				console.log("submitting contact form...")
+    			axios.post('/contact', {
+    				first_name: first_name,
+					last_name: last_name,
+
+    			})
+    			.then((response) => {
+
+    				console.log("no probs")
+
+    			})
+    			.catch((err) => {
+    				console.log("an error has occured in submitting contact");
+    				console.log(err);
+    			})
+
+
 				console.log('starting to submit the case study form');
 
 				console.log('this is the first name: ' + first_name);
 				console.log('this is the last name: ' + last_name);
-
 				
-				axios.post('/contact-us', {
-
-					// send through the form data
-					first_name: first_name,
-					last_name: last_name,
-					email: email,
-					phone: phone,
-					company: company,
-					position: position,
-					industry: industry,
-
-
-				})
-				.then((res) => {
-
-					// include a confirmation message
-					// reload the screen? or what's the next step
-					console.log(res);
-				})
-				.catch((error) => {
-					console.log('there was an error submitting contact form');
-					console.log(error);
-				})
 			}
 
 
