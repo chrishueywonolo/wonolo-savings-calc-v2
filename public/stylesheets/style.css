@@ -89,8 +89,23 @@ p {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 12px;
 	font-weight: 600;
+	border-color: solid 2px #3498db;
+	color: #3498db;
+	background-color: none;
 /*	padding-top: 2%;
 	padding-bottom: 2%;*/
+
+}
+
+.calculate-btn:hover {
+
+	border-radius: 0px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	border-color: solid 2px #3498db;
+	color: #FFFFFF;
+	background-color: #3498db;
 
 }
 
