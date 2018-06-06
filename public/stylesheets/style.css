@@ -206,3 +206,9 @@ p {
 	font-family: 'Montserrat', sans-serif;
 
 }
+
+.info-icon {
+
+	background-image: url("../images/info-icon.png");
+
+}
