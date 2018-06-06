@@ -170,7 +170,7 @@ router.post('/', (req, res) => {
 
 
 // when user submits modal form
-router.post('/contact-us', urlencodedParser, (req,res) => {
+router.post('/contact-us', (req,res) => {
 
 	var first_name = req.body.first_name;
 	var last_name = req.body.last_name;
@@ -180,35 +180,61 @@ router.post('/contact-us', urlencodedParser, (req,res) => {
 	var position = req.body.position;
 	var industry = req.body.industry;
 
-	var postData = querystring.stringify({
-	    'email': email,
-	    'firstname': first_name,
-	    'lastname': last_name,
-	    'phone': phone,
-	    'company': company,
-	    'jobtitle': position,
-	    'hs_context': JSON.stringify({
-	        "hutk": req.cookies.hubspotutk,
-	        "ipAddress": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-	        "pageUrl": "http://www.example.com/form-page",
-	        "pageName": "Example Title"
-	    })
-    })
 
-    var options = {
-		hostname: 'forms.hubspot.com',
-		path: `/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be`,
-		method: 'POST',
+	console.log("inside the /contact-us post request");
+	console.log(req.body);
+
+	// var postData = querystring.stringify({
+	//     'email': email,
+	//     'firstname': first_name,
+	//     'lastname': last_name,
+	//     'phone': phone,
+	//     'company': company,
+	//     'jobtitle': position,
+	//     'hs_context': JSON.stringify({
+	//         "hutk": req.cookies.hubspotutk,
+	//         "ipAddress": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+	//         "pageUrl": "http://www.example.com/form-page",
+	//         "pageName": "Example Title"
+	//     })
+ //    })
+
+ //    var options = {
+	// 	hostname: 'forms.hubspot.com',
+	// 	path: `/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be`,
+	// 	method: 'POST',
+	// 	headers: {
+	// 		'Content-Type': 'application/x-www-form-urlencoded',
+	// 		'Content-Length': postData.length
+	// 	},
+	// 	data: postData
+	// }
+
+	var hubspotUrl = 'https://forms.hubspot.com/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be';
+	var data = {
+
+		"firstname": first_name,
+		"lastname": last_name,
+		"email": email,
+		"phone": phone,
+		"company": company,
+		"jobtitle": position,
+
+	}
+
+	data = JSON.stringify(data);
+	data = encodeURI(data);
+
+	var options = {
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
 			'Content-Length': postData.length
-		},
-		data: postData
+		}
 	}
 
-	axios.post(options)
+	axios.post(hubspotUrl, data, options)
 
-	.then((res) => {
+	.then((response) => {
 
 		var case_study_form_id = 'dae05afb-4480-4288-b4d6-1f44604cd1b5';
 
@@ -226,20 +252,13 @@ router.post('/contact-us', urlencodedParser, (req,res) => {
 
 		}
 
-		var case_study_options = {
-			hostname: 'forms.hubspot.com',
-			path: `/uploads/form/v2/1862878/${case_study_form_id}`,
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-				'Content-Length': postData.length
-			},
-			data: postData
-		}
 
-		axios.post(case_study_options)
+		var caseStudyUrl = `https://forms.hubspot.com/uploads/form/v2/1862878/${case_study_form_id}`
 
-		.then((res) => {
+
+		axios.post(caseStudyUrl, data, options)
+
+		.then((response) => {
 
 
 			res.send(true);
