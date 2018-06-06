@@ -171,157 +171,157 @@ router.post('/', (req, res) => {
 
 
 // when user submits modal form
+// router.post('/contact-us', (req,res) => {
+
+// 	var first_name = req.body.first_name;
+// 	var last_name = req.body.last_name;
+// 	var email = req.body.email;
+// 	var phone = req.body.phone;
+// 	var company = req.body.company;
+// 	var position = req.body.position;
+// 	var industry = req.body.industry;
+
+
+// 	console.log("inside the /contact-us post request");
+// 	console.log(req.body);
+
+
+// 	var hubspotUrl = 'https://forms.hubspot.com/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be';
+// 	var data = {
+
+// 		"firstname": first_name,
+// 		"lastname": last_name,
+// 		"email": email,
+// 		"phone": phone,
+// 		"company": company,
+// 		"jobtitle": position,
+
+// 	}
+
+// 	data = JSON.stringify(data);
+// 	data = encodeURI(data);
+
+// 	var options = {
+// 		headers: {
+// 			'Content-Type': 'application/x-www-form-urlencoded',
+// 			'Content-Length': postData.length
+// 		}
+// 	}
+
+// 	axios.post(hubspotUrl, data, options)
+
+// 	.then((response) => {
+
+// 		var case_study_form_id = 'dae05afb-4480-4288-b4d6-1f44604cd1b5';
+
+// 		if(industry === 'Delivery'){
+
+// 			case_study_form_id = 'ea293002-5ffd-4473-9b71-8c6da574b3d6';
+
+// 		} else if(industry === 'Event_Staff') {
+
+// 			case_study_form_id = '7d445f78-c19a-4c52-89e3-88cb0f034a51';
+
+// 		} else if(industry === 'Merchandising') {
+
+// 			case_study_form_id = '48fa635f-3dd6-417d-bbde-9b889c376f83';
+
+// 		}
+
+
+// 		var caseStudyUrl = `https://forms.hubspot.com/uploads/form/v2/1862878/${case_study_form_id}`
+
+
+// 		axios.post(caseStudyUrl, data, options)
+
+// 		.then((response) => {
+
+
+// 			res.send(true);
+
+
+// 		})
+// 		.catch((error) => {
+
+// 			console.log("There was an error adding user to case study form");
+// 			console.log(error);
+
+// 		})
+
+
+// 	})
+// 	.catch((error) => {
+
+// 		console.log("There was an error sending to HubSpot");
+// 		console.log(error);
+
+// 	})
+
+
+// });
+
 router.post('/contact-us', (req,res) => {
 
-	var first_name = req.body.first_name;
-	var last_name = req.body.last_name;
-	var email = req.body.email;
-	var phone = req.body.phone;
-	var company = req.body.company;
-	var position = req.body.position;
-	var industry = req.body.industry;
 
+	console.log('inside the contact-us route...');
 
-	console.log("inside the /contact-us post request");
-	console.log(req.body);
+	console.log(req.body.first_name);
+	console.log(req.body.last_name);
+	console.log(req.body.email);
+	var currentUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
+	// build the data object
+	var postData = querystring.stringify({
+	    
+	    'firstname': req.body.first_name,
+	    'lastname': req.body.last_name,
+	    'email': req.body.email,
+	    'phone': req.body.phone,
+	    'company': req.body.company,
+	    'jobtitle': req.body.position,
+	    'industry': req.body.industry,
+	    'hs_context': JSON.stringify({
+	        "hutk": req.cookies.hubspotutk,
+	        "ipAddress": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+	        "pageUrl": currentUrl,
+	        "pageName": "Savings Calculator"
+	    })
+	});
 
-	var hubspotUrl = 'https://forms.hubspot.com/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be';
-	var data = {
-
-		"firstname": first_name,
-		"lastname": last_name,
-		"email": email,
-		"phone": phone,
-		"company": company,
-		"jobtitle": position,
-
-	}
-
-	data = JSON.stringify(data);
-	data = encodeURI(data);
+	// set the post options, changing out the HUB ID and FORM GUID variables.
 
 	var options = {
+		hostname: 'forms.hubspot.com',
+		path: '/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be',
+		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
 			'Content-Length': postData.length
 		}
 	}
 
-	axios.post(hubspotUrl, data, options)
+	// set up the request
 
-	.then((response) => {
+	var request = https.request(options, function(response){
+		console.log("Status: " + response.statusCode);
+		console.log("Headers: " + JSON.stringify(response.headers));
+		response.setEncoding('utf8');
+		response.on('data', function(chunk){
+			console.log('Body: ' + chunk)
+		});
+	});
 
-		var case_study_form_id = 'dae05afb-4480-4288-b4d6-1f44604cd1b5';
+	request.on('error', function(e){
+		console.log("Problem with request " + e.message)
+	});
 
-		if(industry === 'Delivery'){
+	// post the data
 
-			case_study_form_id = 'ea293002-5ffd-4473-9b71-8c6da574b3d6';
+	request.write(postData);
+	request.end();
+	res.end();
 
-		} else if(industry === 'Event_Staff') {
-
-			case_study_form_id = '7d445f78-c19a-4c52-89e3-88cb0f034a51';
-
-		} else if(industry === 'Merchandising') {
-
-			case_study_form_id = '48fa635f-3dd6-417d-bbde-9b889c376f83';
-
-		}
-
-
-		var caseStudyUrl = `https://forms.hubspot.com/uploads/form/v2/1862878/${case_study_form_id}`
-
-
-		axios.post(caseStudyUrl, data, options)
-
-		.then((response) => {
-
-
-			res.send(true);
-
-
-		})
-		.catch((error) => {
-
-			console.log("There was an error adding user to case study form");
-			console.log(error);
-
-		})
-
-
-	})
-	.catch((error) => {
-
-		console.log("There was an error sending to HubSpot");
-		console.log(error);
-
-	})
-
-
-});
-
-// router.post('/contact-us', (req,res) => {
-
-
-// 	console.log('inside the contact-us route...');
-
-// 	console.log(req.body.first_name);
-// 	console.log(req.body.last_name);
-// 	console.log(req.body.email);
-	// var currentUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-
-	// // build the data object
-	// var postData = querystring.stringify({
-	    
-	//     'firstname': req.body.first_name,
-	//     'lastname': req.body.last_name,
-	//     'email': req.body.email,
-	//     'phone': req.body.phone,
-	//     'company': req.body.company,
-	//     'jobtitle': req.body.position,
-	//     'industry': req.body.industry,
-	//     'hs_context': JSON.stringify({
-	//         "hutk": req.cookies.hubspotutk,
-	//         "ipAddress": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-	//         "pageUrl": currentUrl,
-	//         "pageName": "Savings Calculator"
-	//     })
-	// });
-
-	// // set the post options, changing out the HUB ID and FORM GUID variables.
-
-	// var options = {
-	// 	hostname: 'forms.hubspot.com',
-	// 	path: '/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be',
-	// 	method: 'POST',
-	// 	headers: {
-	// 		'Content-Type': 'application/x-www-form-urlencoded',
-	// 		'Content-Length': postData.length
-	// 	}
-	// }
-
-	// // set up the request
-
-	// var request = https.request(options, function(response){
-	// 	console.log("Status: " + response.statusCode);
-	// 	console.log("Headers: " + JSON.stringify(response.headers));
-	// 	response.setEncoding('utf8');
-	// 	response.on('data', function(chunk){
-	// 		console.log('Body: ' + chunk)
-	// 	});
-	// });
-
-	// request.on('error', function(e){
-	// 	console.log("Problem with request " + e.message)
-	// });
-
-	// // post the data
-
-	// request.write(postData);
-	// request.end();
-	// res.end();
-
-// })
+})
 
 
 
