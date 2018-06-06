@@ -340,7 +340,7 @@ router.post('/contact-us', (req,res) => {
 
 	// request.write(postData);
 	// request.end();
-	res.end();
+	res.send("hi");
 
 })
 
