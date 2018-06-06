@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 	res.render('index.hbs',{});
 });
 
-router.post('/', (req, res) => {
+router.post('/calculate-savings', (req, res) => {
 	console.log("inside the routes.js post...")
 
 	var industry = req.body.industry;
