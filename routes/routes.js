@@ -109,12 +109,12 @@ router.post('/', (req, res) => {
 					if(fill_rate_percentage > .85){
 
 						real_fill_rate = fill_rate_percentage;
-						fill_rate_msg = "";
+						fill_rate_msg = "Wow, looks like Wonolo is a great fit for your staffing needs. We encourage you to chat with a Wonolo Specialist to discuss how your business can benefit from using Wonolo.";
 
 					} else {
 
 						real_fill_rate = .85;
-						fill_rate_msg = "";
+						fill_rate_msg = "Your estimated fill rate is based on several factors. Please speak with a Wonolo Specialist to discuss how to improve this number.";
 
 					}
 
