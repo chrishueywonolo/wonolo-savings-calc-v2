@@ -83,6 +83,8 @@ router.post('/', (req, res) => {
 				var fillRateUrl = `https://wonolo-ml.herokuapp.com/savcal?auth_token=19bd75e4-659e-4b99-b4dc-68d86e51efdc&model=15_1_saving_calculator&category=${industry}&zip=${zipcode}&rate=${hourlyWage}`;
 
 
+
+
 				axios.get(fillRateUrl)
 
 				.then((response) => {
@@ -103,18 +105,19 @@ router.post('/', (req, res) => {
 
 					console.log("this is the fill rate percentage: " + fill_rate_percentage);
 
-					if(fill_rate_percentage < .85){
 
-						real_fill_rate = .85;
+					if(fill_rate_percentage > .85){
+
+						real_fill_rate = fill_rate_percentage;
 						fill_rate_msg = "";
 
 					} else {
 
-						real_fill_rate = fill_rate_percentage;
+						real_fill_rate = .85;
 						fill_rate_msg = "";
+
 					}
 
-					
 
 					var savings_msg = ["Your CFO is smiling right now.", "Wow, you'll be saving a lot.", "I'm not a clairvoyant, but I think I see a promotion in your future.","Winner winner, chicken dinner!","Pat yourself on the back.",
 
