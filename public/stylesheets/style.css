@@ -1,8 +1,3 @@
-html * {
-
-	font-family: 'Montserrat', sans-serif !important;
-}
-
 p {
 
 	color: #5b5b5b;
@@ -207,8 +202,8 @@ p {
 
 }
 
-.info-icon {
+input {
 
-	background: url("../images/info-icon.png");
-
+	font-family: 'Montserrat', sans-serif;
+	
 }
