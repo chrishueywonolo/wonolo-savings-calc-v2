@@ -99,7 +99,7 @@
     				total_savings_amount = total_savings_amount.toLocaleString();
     				var savings_msg = res.data.savings_msg;
 
-    				var fill_rate_percent = parseFloat(res.data.fill_rate)*100;
+    				var fill_rate_percent = Math.round(parseFloat(res.data.fill_rate)*100);
     				var fill_rate_msg = res.data.fill_rate_msg;
 
     				$("#savingsAmount").text(total_savings_amount);
