@@ -101,6 +101,8 @@ router.post('/', (req, res) => {
 					var fill_rate_msg = "";
 					fill_rate_percentage = response.data;
 
+					console.log("this is the fill rate percentage: " + fill_rate_percentage);
+
 					if(fill_rate_percentage < .85){
 
 						real_fill_rate = .85;
