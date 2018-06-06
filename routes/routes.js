@@ -265,60 +265,81 @@ router.post('/contact-us', (req,res) => {
 
 	console.log('inside the contact-us route...');
 
-	console.log(req.body.first_name);
-	console.log(req.body.last_name);
-	console.log(req.body.email);
-	var currentUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+	console.log(req.body.first_name, typeof req.body.first_name);
+	console.log(req.body.last_name, typeof req.body.last_name);
+	console.log(req.body.email, typeof req.body.email);
 
-	// build the data object
-	var postData = querystring.stringify({
-	    
-	    'firstname': req.body.first_name,
-	    'lastname': req.body.last_name,
-	    'email': req.body.email,
-	    'phone': req.body.phone,
-	    'company': req.body.company,
-	    'jobtitle': req.body.position,
-	    'industry': req.body.industry,
-	    'hs_context': JSON.stringify({
-	        "hutk": req.cookies.hubspotutk,
-	        "ipAddress": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-	        "pageUrl": currentUrl,
-	        "pageName": "Savings Calculator"
-	    })
-	});
 
-	// set the post options, changing out the HUB ID and FORM GUID variables.
+	var data = {
 
-	var options = {
-		hostname: 'forms.hubspot.com',
-		path: '/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be',
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			'Content-Length': postData.length
-		}
+		'firstname': req.body.first_name,
+		'last_name': req.body.last_name,
+		'email': req.body.email
 	}
 
-	// set up the request
+	console.log(typeof data);
 
-	var request = https.request(options, function(response){
-		console.log("Status: " + response.statusCode);
-		console.log("Headers: " + JSON.stringify(response.headers));
-		response.setEncoding('utf8');
-		response.on('data', function(chunk){
-			console.log('Body: ' + chunk)
-		});
-	});
+	data = JSON.stringify(data);
 
-	request.on('error', function(e){
-		console.log("Problem with request " + e.message)
-	});
+	console.log(typeof data);
+	console.log(data);
 
-	// post the data
+	data = encodeURI(data);
 
-	request.write(postData);
-	request.end();
+	console.log(typeof data);
+	console.log(data);
+
+	// var currentUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+	// // build the data object
+	// var postData = querystring.stringify({
+	    
+	//     'firstname': req.body.first_name,
+	//     'lastname': req.body.last_name,
+	//     'email': req.body.email,
+	//     'phone': req.body.phone,
+	//     'company': req.body.company,
+	//     'jobtitle': req.body.position,
+	//     'industry': req.body.industry,
+	//     'hs_context': JSON.stringify({
+	//         "hutk": req.cookies.hubspotutk,
+	//         "ipAddress": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+	//         "pageUrl": currentUrl,
+	//         "pageName": "Savings Calculator"
+	//     })
+	// });
+
+	// // set the post options, changing out the HUB ID and FORM GUID variables.
+
+	// var options = {
+	// 	hostname: 'forms.hubspot.com',
+	// 	path: '/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be',
+	// 	method: 'POST',
+	// 	headers: {
+	// 		'Content-Type': 'application/x-www-form-urlencoded',
+	// 		'Content-Length': postData.length
+	// 	}
+	// }
+
+	// // set up the request
+
+	// var request = https.request(options, function(response){
+	// 	console.log("Status: " + response.statusCode);
+	// 	console.log("Headers: " + JSON.stringify(response.headers));
+	// 	response.setEncoding('utf8');
+	// 	response.on('data', function(chunk){
+	// 		console.log('Body: ' + chunk)
+	// 	});
+	// });
+
+	// request.on('error', function(e){
+	// 	console.log("Problem with request " + e.message)
+	// });
+
+	// // post the data
+
+	// request.write(postData);
+	// request.end();
 	res.end();
 
 })
