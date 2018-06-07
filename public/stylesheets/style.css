@@ -230,11 +230,12 @@ input, select, .modal-title, .modal-body {
 	top: 0;
 	left: 0;
 	width: 100%;
+	z-index: 999;
 
 }
 
 #inner-message {
 
 	margin:0 auto;
-	
+
 }

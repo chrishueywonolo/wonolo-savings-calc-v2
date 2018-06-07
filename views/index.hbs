@@ -215,10 +215,11 @@
     			.then((response) => {
 
     				console.log("no probs");
-    				$("#contactFormModal").attr("aria-hidden", true);
+    				$("#contactFormModal").modal("hide");
     				$("#contact-us").trigger("reset");
     				$("#message").fadeIn(300);
-    				$("#inner-message").text(response);
+    				$("#inner-message").text(response.data);
+
     			})
     			.catch((err) => {
     				console.log("an error has occured in submitting contact");
