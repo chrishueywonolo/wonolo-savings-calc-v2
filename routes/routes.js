@@ -14,6 +14,8 @@ router.get('/', (req, res) => {
 
 router.post('/calculate-savings', (req, res) => {
 	console.log("inside the routes.js post...")
+	console.log("req.body data from calculate savings: ")
+	console.log(req.body);
 
 	var industry = req.body.industry;
 	var zipcode = req.body.zipcode;
