@@ -171,95 +171,148 @@ router.post('/calculate-savings', (req, res) => {
 
 
 // when user submits modal form
+// router.post('/contact', (req,res) => {
+
+
+// 	console.log('inside the /contact POST route');
+
+// 	var first_name = req.body.first_name;
+// 	var last_name = req.body.last_name;
+// 	var email = req.body.email;
+// 	var phone = req.body.phone;
+// 	var company = req.body.company;
+// 	var position = req.body.position;
+// 	var industry = req.body.industry;
+
+
+// 	var hubspotUrl = 'https://forms.hubspot.com/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be';
+// 	var data = {
+
+// 		"firstname": first_name,
+// 		"lastname": last_name,
+// 		"email": email,
+// 		"phone": phone,
+// 		"company": company,
+// 		"jobtitle": position,
+
+// 	}
+
+// 	data = JSON.stringify(data);
+// 	data = encodeURI(data);
+
+// 	var options = {
+// 		headers: {
+// 			'Content-Type': 'application/x-www-form-urlencoded',
+// 			'Content-Length': data.length
+// 		}
+// 	}
+
+// 	axios.post(hubspotUrl, data, options)
+
+// 	.then((response) => {
+
+// 		var case_study_form_id = 'dae05afb-4480-4288-b4d6-1f44604cd1b5';
+
+// 		if(industry === 'Delivery'){
+
+// 			case_study_form_id = 'ea293002-5ffd-4473-9b71-8c6da574b3d6';
+
+// 		} else if(industry === 'Event_Staff') {
+
+// 			case_study_form_id = '7d445f78-c19a-4c52-89e3-88cb0f034a51';
+
+// 		} else if(industry === 'Merchandising') {
+
+// 			case_study_form_id = '48fa635f-3dd6-417d-bbde-9b889c376f83';
+
+// 		}
+
+
+// 		var caseStudyUrl = `https://forms.hubspot.com/uploads/form/v2/1862878/${case_study_form_id}`
+
+
+// 		axios.post(caseStudyUrl, data, options)
+
+// 		.then((response) => {
+
+
+// 			res.send(true);
+
+
+// 		})
+// 		.catch((error) => {
+
+// 			console.log("There was an error adding user to case study form");
+// 			console.log(error);
+
+// 		})
+
+
+// 	})
+// 	.catch((error) => {
+
+// 		console.log("There was an error sending to HubSpot");
+// 		console.log(error);
+
+// 	})
+
+
+// });
+
 router.post('/contact', (req,res) => {
 
 
-	console.log('inside the /contact POST route');
-
-	var first_name = req.body.first_name;
-	var last_name = req.body.last_name;
-	var email = req.body.email;
-	var phone = req.body.phone;
-	var company = req.body.company;
-	var position = req.body.position;
-	var industry = req.body.industry;
+	var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
 
-	var hubspotUrl = 'https://forms.hubspot.com/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be';
-	var data = {
+	// build the data object
+	var postData = querystring.stringify({
+	    'email': req.body.email,
+	    'firstname': req.body.first_name,
+	    'lastname': req.body.last_name,
+	    'phone': req.body.phone,
+	    'company': req.body.company,
+	    'jobtitle': req.body.position,
+	    'hs_context': JSON.stringify({
+	        "hutk": req.cookies.hubspotutk,
+	        "ipAddress": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+	        "pageUrl": fullUrl,
+	        "pageName": "Savings Calculator"
+	    })
+	});
 
-		"firstname": first_name,
-		"lastname": last_name,
-		"email": email,
-		"phone": phone,
-		"company": company,
-		"jobtitle": position,
-
-	}
-
-	data = JSON.stringify(data);
-	data = encodeURI(data);
+	// set the post options, changing out the HUB ID and FORM GUID variables.
 
 	var options = {
+		hostname: 'forms.hubspot.com',
+		path: '/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be',
+		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
-			'Content-Length': data.length
+			'Content-Length': postData.length
 		}
 	}
 
-	axios.post(hubspotUrl, data, options)
+	// set up the request
 
-	.then((response) => {
+	var request = https.request(options, function(response){
+		console.log("Status: " + response.statusCode);
+		console.log("Headers: " + JSON.stringify(response.headers));
+		response.setEncoding('utf8');
+		response.on('data', function(chunk){
+			console.log('Body: ' + chunk)
+		});
+	});
 
-		var case_study_form_id = 'dae05afb-4480-4288-b4d6-1f44604cd1b5';
+	request.on('error', function(e){
+		console.log("Problem with request " + e.message)
+	});
 
-		if(industry === 'Delivery'){
+	// post the data
 
-			case_study_form_id = 'ea293002-5ffd-4473-9b71-8c6da574b3d6';
-
-		} else if(industry === 'Event_Staff') {
-
-			case_study_form_id = '7d445f78-c19a-4c52-89e3-88cb0f034a51';
-
-		} else if(industry === 'Merchandising') {
-
-			case_study_form_id = '48fa635f-3dd6-417d-bbde-9b889c376f83';
-
-		}
-
-
-		var caseStudyUrl = `https://forms.hubspot.com/uploads/form/v2/1862878/${case_study_form_id}`
-
-
-		axios.post(caseStudyUrl, data, options)
-
-		.then((response) => {
-
-
-			res.send(true);
-
-
-		})
-		.catch((error) => {
-
-			console.log("There was an error adding user to case study form");
-			console.log(error);
-
-		})
-
-
-	})
-	.catch((error) => {
-
-		console.log("There was an error sending to HubSpot");
-		console.log(error);
-
-	})
-
-
-});
-
-
+	request.write(postData);
+	request.end();
+})
 
 module.exports = router
 
