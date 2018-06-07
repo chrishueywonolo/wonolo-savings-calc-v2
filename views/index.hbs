@@ -182,12 +182,12 @@
 
 
 
-			$("#read-case-study").click(function(event){
-				console.log('whatever')
-				event.preventDefault();
-				submitContact();
+			// $("#read-case-study").click(function(event){
+			// 	console.log('whatever')
+			// 	event.preventDefault();
+			// 	submitContact();
 
-			});
+			// });
 
 
 			function submitContact(){
@@ -284,7 +284,7 @@
 					        </button>
 					      </div>
 					      <div class="modal-body">
-				      		<form id="contact-us" method="post" enctype="multipart/form-data">
+				      		<form id="contact-us" onsubmit="submitContact()" method="post" enctype="multipart/form-data">
 							    <div class="row">
 							        <div class="col">
 							            <div class="form-group">
