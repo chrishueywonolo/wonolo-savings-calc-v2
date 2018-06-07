@@ -171,105 +171,93 @@ router.post('/calculate-savings', (req, res) => {
 
 
 // when user submits modal form
-// router.post('/contact-us', (req,res) => {
-
-// 	var first_name = req.body.first_name;
-// 	var last_name = req.body.last_name;
-// 	var email = req.body.email;
-// 	var phone = req.body.phone;
-// 	var company = req.body.company;
-// 	var position = req.body.position;
-// 	var industry = req.body.industry;
+router.post('/contact', (req,res) => {
 
 
-// 	console.log("inside the /contact-us post request");
-// 	console.log(req.body);
+	console.log('inside the /contact POST route');
+
+	var first_name = req.body.first_name;
+	var last_name = req.body.last_name;
+	var email = req.body.email;
+	var phone = req.body.phone;
+	var company = req.body.company;
+	var position = req.body.position;
+	var industry = req.body.industry;
 
 
-// 	var hubspotUrl = 'https://forms.hubspot.com/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be';
-// 	var data = {
+	var hubspotUrl = 'https://forms.hubspot.com/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be';
+	var data = {
 
-// 		"firstname": first_name,
-// 		"lastname": last_name,
-// 		"email": email,
-// 		"phone": phone,
-// 		"company": company,
-// 		"jobtitle": position,
+		"firstname": first_name,
+		"lastname": last_name,
+		"email": email,
+		"phone": phone,
+		"company": company,
+		"jobtitle": position,
 
-// 	}
+	}
 
-// 	data = JSON.stringify(data);
-// 	data = encodeURI(data);
+	data = JSON.stringify(data);
+	data = encodeURI(data);
 
-// 	var options = {
-// 		headers: {
-// 			'Content-Type': 'application/x-www-form-urlencoded',
-// 			'Content-Length': postData.length
-// 		}
-// 	}
+	var options = {
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Length': postData.length
+		}
+	}
 
-// 	axios.post(hubspotUrl, data, options)
+	axios.post(hubspotUrl, data, options)
 
-// 	.then((response) => {
+	.then((response) => {
 
-// 		var case_study_form_id = 'dae05afb-4480-4288-b4d6-1f44604cd1b5';
+		var case_study_form_id = 'dae05afb-4480-4288-b4d6-1f44604cd1b5';
 
-// 		if(industry === 'Delivery'){
+		if(industry === 'Delivery'){
 
-// 			case_study_form_id = 'ea293002-5ffd-4473-9b71-8c6da574b3d6';
+			case_study_form_id = 'ea293002-5ffd-4473-9b71-8c6da574b3d6';
 
-// 		} else if(industry === 'Event_Staff') {
+		} else if(industry === 'Event_Staff') {
 
-// 			case_study_form_id = '7d445f78-c19a-4c52-89e3-88cb0f034a51';
+			case_study_form_id = '7d445f78-c19a-4c52-89e3-88cb0f034a51';
 
-// 		} else if(industry === 'Merchandising') {
+		} else if(industry === 'Merchandising') {
 
-// 			case_study_form_id = '48fa635f-3dd6-417d-bbde-9b889c376f83';
+			case_study_form_id = '48fa635f-3dd6-417d-bbde-9b889c376f83';
 
-// 		}
-
-
-// 		var caseStudyUrl = `https://forms.hubspot.com/uploads/form/v2/1862878/${case_study_form_id}`
+		}
 
 
-// 		axios.post(caseStudyUrl, data, options)
-
-// 		.then((response) => {
+		var caseStudyUrl = `https://forms.hubspot.com/uploads/form/v2/1862878/${case_study_form_id}`
 
 
-// 			res.send(true);
+		axios.post(caseStudyUrl, data, options)
+
+		.then((response) => {
 
 
-// 		})
-// 		.catch((error) => {
-
-// 			console.log("There was an error adding user to case study form");
-// 			console.log(error);
-
-// 		})
+			res.send(true);
 
 
-// 	})
-// 	.catch((error) => {
+		})
+		.catch((error) => {
 
-// 		console.log("There was an error sending to HubSpot");
-// 		console.log(error);
+			console.log("There was an error adding user to case study form");
+			console.log(error);
 
-// 	})
-
-
-// });
-
-router.post('/contact', (req, res) => {
-	
-	console.log("inside the contact post...")
-	console.log(req.body);
+		})
 
 
-	res.send("hi");
+	})
+	.catch((error) => {
 
-	
-})
+		console.log("There was an error sending to HubSpot");
+		console.log(error);
+
+	})
+
+
+});
 
 
 
