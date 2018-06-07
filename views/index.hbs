@@ -217,6 +217,7 @@
     				console.log("no probs");
     				$("#contactFormModal").attr("aria-hidden", true);
     				$("#contact-us").trigger("reset");
+    				$("#message").fadeIn(300);
     				$("#inner-message").text(response);
     			})
     			.catch((err) => {
@@ -240,9 +241,9 @@
 <body>
 
 	<!-- Alerts -->
-	<div id="message">
+	<div id="message" style="display:none">
 		<div style="padding: 5px;">
-			<div id="inner-message" class="alert alert-success">
+			<div id="inner-message" class="alert alert-success" role="alert">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 	            
 	        </div>
