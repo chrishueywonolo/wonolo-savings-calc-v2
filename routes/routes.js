@@ -254,7 +254,7 @@ router.post('/contact', (req,res) => {
 			.then((response) => {
 				
 				if(response.status = 204){
-					var msg = "Your contact information was submitted successfully."
+					var msg = "Your contact information was successfully submitted."
 					res.send(msg);
 				}
 
