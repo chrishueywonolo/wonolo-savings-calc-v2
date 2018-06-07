@@ -1,9 +1,12 @@
 const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const router = express.Router();
 const routes = require('./routes/routes.js');
+
+
 
 const app = express();
 
@@ -11,6 +14,8 @@ app.use(bodyParser.json({
 	type: "*/*"
 }));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cookieParser());
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
