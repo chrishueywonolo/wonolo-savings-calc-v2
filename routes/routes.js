@@ -299,10 +299,17 @@ router.post('/contact', (req,res) => {
 
 	// set the post options, changing out the HUB ID and FORM GUID variables.
 
+	// var options = {
+	// 	hostname: 'forms.hubspot.com',
+	// 	path: '/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be',
+	// 	method: 'POST',
+	// 	headers: {
+	// 		'Content-Type': 'application/x-www-form-urlencoded',
+	// 		'Content-Length': postData.length
+	// 	}
+	// }
+
 	var options = {
-		hostname: 'forms.hubspot.com',
-		path: '/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be',
-		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
 			'Content-Length': postData.length
@@ -311,23 +318,41 @@ router.post('/contact', (req,res) => {
 
 	// set up the request
 
-	var request = https.request(options, function(response){
-		console.log("Status: " + response.statusCode);
-		console.log("Headers: " + JSON.stringify(response.headers));
-		response.setEncoding('utf8');
-		response.on('data', function(chunk){
-			console.log('Body: ' + chunk)
-		});
-	});
+	// var request = https.request(options, function(response){
+	// 	console.log("Status: " + response.statusCode);
+	// 	console.log("Headers: " + JSON.stringify(response.headers));
+	// 	response.setEncoding('utf8');
+	// 	response.on('data', function(chunk){
+	// 		console.log('Body: ' + chunk)
+	// 	});
+	// });
 
-	request.on('error', function(e){
-		console.log("Problem with request " + e.message)
-	});
+	// request.on('error', function(e){
+	// 	console.log("Problem with request " + e.message)
+	// });
 
-	// post the data
+	// // post the data
 
-	request.write(postData);
-	request.end();
+	// request.write(postData);
+	// request.end();
+
+	var url = 'https://forms.hubspot.com/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be';
+
+
+	axios.post(url, postData, options)
+
+	.then((response) => {
+
+		console.log("response from hubspot");
+		console.log(response);
+
+	})
+	.catch((error) => {
+
+		console.log("an error occurred submitting to hubspot");
+		console.log(error);
+
+	})
 })
 
 module.exports = router
