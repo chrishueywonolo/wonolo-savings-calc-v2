@@ -6,7 +6,6 @@ const querystring = require('querystring');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 
 router.get('/', (req, res) => {
@@ -265,18 +264,29 @@ router.post('/contact', (req,res) => {
 
 	var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-	console.log("this is the req.body data: ");
-	console.log(req.body);
-	console.log(req.body.first_name);
+	// console.log("this is the req.body data: ");
+	// console.log(req.body);
+	// console.log(req.body.first_name);
+
+	var email = req.body.email;
+	var first_name = req.body.first_name;
+	var last_name = req.body.last_name;
+	var phone = req.body.phone;
+	var company = req.body.company;
+	var position = req.body.position;
+
+
+	console.log(email, first_name, last_name, phone, company, position);
+
 
 	// build the data object
 	var postData = querystring.stringify({
-	    'email': req.body.email,
-	    'firstname': req.body.first_name,
-	    'lastname': req.body.last_name,
-	    'phone': req.body.phone,
-	    'company': req.body.company,
-	    'jobtitle': req.body.position,
+	    'email': email,
+	    'firstname': first_name,
+	    'lastname': last_name,
+	    'phone': phone,
+	    'company': company,
+	    'jobtitle': position,
 	    'hs_context': JSON.stringify({
 	        "hutk": req.cookies.hubspotutk,
 	        "ipAddress": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
