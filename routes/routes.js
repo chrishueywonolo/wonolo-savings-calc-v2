@@ -203,7 +203,7 @@ router.post('/contact', (req,res) => {
 	var options = {
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
-			'Content-Length': postData.length
+			'Content-Length': data.length
 		}
 	}
 
