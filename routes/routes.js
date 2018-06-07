@@ -276,9 +276,9 @@ router.post('/contact', (req,res) => {
 	var phone = req.body.phone;
 	var company = req.body.company;
 	var position = req.body.position;
+	var industry = req.body.industry;
 
-
-	console.log(email, first_name, last_name, phone, company, position);
+	console.log(email, first_name, last_name, phone, company, position, industry);
 
 
 	// build the data object
@@ -299,16 +299,6 @@ router.post('/contact', (req,res) => {
 
 	// set the post options, changing out the HUB ID and FORM GUID variables.
 
-	// var options = {
-	// 	hostname: 'forms.hubspot.com',
-	// 	path: '/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be',
-	// 	method: 'POST',
-	// 	headers: {
-	// 		'Content-Type': 'application/x-www-form-urlencoded',
-	// 		'Content-Length': postData.length
-	// 	}
-	// }
-
 	var options = {
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
@@ -316,25 +306,6 @@ router.post('/contact', (req,res) => {
 		}
 	}
 
-	// set up the request
-
-	// var request = https.request(options, function(response){
-	// 	console.log("Status: " + response.statusCode);
-	// 	console.log("Headers: " + JSON.stringify(response.headers));
-	// 	response.setEncoding('utf8');
-	// 	response.on('data', function(chunk){
-	// 		console.log('Body: ' + chunk)
-	// 	});
-	// });
-
-	// request.on('error', function(e){
-	// 	console.log("Problem with request " + e.message)
-	// });
-
-	// // post the data
-
-	// request.write(postData);
-	// request.end();
 
 	var url = 'https://forms.hubspot.com/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be';
 
@@ -345,6 +316,43 @@ router.post('/contact', (req,res) => {
 
 		console.log("response from hubspot");
 		console.log(response);
+		console.log(typeof response.status, response.status);
+
+		// run another call to the respective case study form
+		if(response.status = 204){
+
+			var case_study_form_id = 'dae05afb-4480-4288-b4d6-1f44604cd1b5';
+
+			if(industry === 'Delivery'){
+
+				case_study_form_id = 'ea293002-5ffd-4473-9b71-8c6da574b3d6';
+
+			} else if(industry === 'Event_Staff') {
+
+				case_study_form_id = '7d445f78-c19a-4c52-89e3-88cb0f034a51';
+
+			} else if(industry === 'Merchandising') {
+
+				case_study_form_id = '48fa635f-3dd6-417d-bbde-9b889c376f83';
+
+			}
+
+
+			var caseStudyUrl = `https://forms.hubspot.com/uploads/form/v2/1862878/${case_study_form_id}`
+
+
+			axios.post(caseStudyUrl, postData, options)
+
+			.then((response) => {
+				if(response.status = 204){
+					var msg = "Your contact information was submitted successfully."
+					res.send(msg);
+				}
+			})
+			.catch((error) => {
+
+			})
+		}
 
 	})
 	.catch((error) => {
