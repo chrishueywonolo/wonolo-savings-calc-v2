@@ -214,8 +214,10 @@
     			})
     			.then((response) => {
 
-    				console.log("no probs")
-
+    				console.log("no probs");
+    				$("#contactFormModal").attr("aria-hidden", true);
+    				$("#contact-us").trigger("reset");
+    				$("#inner-message").text(response);
     			})
     			.catch((err) => {
     				console.log("an error has occured in submitting contact");
@@ -236,6 +238,18 @@
 
 </head>
 <body>
+
+	<!-- Alerts -->
+	<div id="message">
+		<div style="padding: 5px;">
+			<div id="inner-message" class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	            
+	        </div>
+	    </div>
+	</div>
+
+
 	<!-- Jumbotron -->
 	<div class="jumbotron jumbotron-fluid" id="hero-image">
 	  <div class="container">
@@ -278,15 +292,15 @@
 				<div class="row">
 					<div class="col-12 pl-0 pr-0">
 						<label style="font-weight:600" class="m-0 pb-2 pt-2">Ready to get started?</label>
-						<button type="button" id="saveStaffingBtn" class="btn btn-primary float-md-right" data-toggle="modal" data-target="#exampleModal">SAVE ON STAFFING</button>
+						<button type="button" id="saveStaffingBtn" class="btn btn-primary float-md-right" data-toggle="modal" data-target="#contactFormModal">SAVE ON STAFFING</button>
 					</div>
 
 					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+					<div class="modal fade" id="contactFormModal" tabindex="-1" role="dialog" aria-labelledby="contactFormModal" aria-hidden="false">
 					  <div class="modal-dialog modal-lg">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">Save on staffing. Chat with a Wonolo rep.</h5>
+					        <h5 class="modal-title" id="contactFormModal">Save on staffing. Chat with a Wonolo rep.</h5>
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          <span aria-hidden="true">&times;</span>
 					        </button>
