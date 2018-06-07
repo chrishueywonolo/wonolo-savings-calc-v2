@@ -267,6 +267,7 @@ router.post('/contact', (req,res) => {
 
 	console.log("this is the req.body data: ");
 	console.log(req.body);
+	console.log(req.body.first_name);
 
 	// build the data object
 	var postData = querystring.stringify({

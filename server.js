@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json({
 	type: "*/*"
 }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 
