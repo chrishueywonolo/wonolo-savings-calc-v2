@@ -265,6 +265,8 @@ router.post('/contact', (req,res) => {
 
 	var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
+	console.log("this is the req.body data: ");
+	console.log(req.body);
 
 	// build the data object
 	var postData = querystring.stringify({

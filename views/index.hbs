@@ -197,6 +197,10 @@
     			axios.post('/contact', {
     				first_name: first_name,
 					last_name: last_name,
+					email: email,
+					phone: phone,
+					company: company,
+					position: position,
 
     			})
     			.then((response) => {
@@ -209,11 +213,6 @@
     				console.log(err);
     			})
 
-
-				console.log('starting to submit the case study form');
-
-				console.log('this is the first name: ' + first_name);
-				console.log('this is the last name: ' + last_name);
 
 			}
 
