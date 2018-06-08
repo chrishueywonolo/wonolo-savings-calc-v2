@@ -230,6 +230,8 @@
 			function submitContact(){
 
 
+
+
 				console.log("submitting contact form...")
     			axios.post('/contact', {
 
@@ -252,6 +254,30 @@
     				$("#inner-message").text(response.data);
 
     				window.setTimeout(hideMessage, 2000);
+
+					// send to zapier sheet
+					var obj = {
+						first_name,
+						last_name,
+						email,
+						phone,
+						company,
+						position,
+						call_me
+					}
+
+					axios.post('https://hooks.zapier.com/hooks/catch/2761357/ape7jx/',obj)
+					.then((response) => {
+						console.log('sent info to zapier');
+						console.log(response);
+						// don't do anything
+						
+					})
+					.catch((error) => {
+						console.log('error sending data obj to zapier');
+						console.log(error);
+					})
+
 
     			})
     			.catch((err) => {
