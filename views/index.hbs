@@ -355,7 +355,7 @@
 			<!-- end of resultsContainer -->
 
 			<!-- formContainer -->
-			<div class="col-12 float-right" id="formContainer" style="transition: all 2s;">
+			<div class="col-12" id="formContainer" style="transition: all 2s;">
 				<form id="savingsCalc" method="post" enctype="multipart/form-data">
 					<div class="row question">
 						<div class="col-12 col-md-6">
@@ -401,13 +401,13 @@
 							<!-- Mobile Screen -->
 							<p class="d-block d-sm-none text-center">Billable Rate<span class="fas fa-info-circle" style="margin-left:10px" data-toggle="popover" data-trigger="hover" data-placement="top" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></span></p>
 							<!-- Larger than mobile -->
-							<p class="d-none d-sm-block mb-0">What is your hourly billable rate for 1 worker?<span class="fas fa-info-circle" style="margin-left:10px" data-toggle="popover" data-trigger="hover" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></span></p>
+							<p class="d-none d-sm-block mb-0">What is your hourly billable rate for 1 worker?<span class="fas fa-info-circle" style="margin-left:10px; color: #49bbff;" data-toggle="popover" data-trigger="hover" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></span></p>
 						</div>
 						<div class="col-12 col-md-6 no-gutters">
 							
 							<div class="input-group col-md-6 float-md-right" id="billableRateGroup" style="transition: all 2s;">
 							  <div class="input-group-prepend">
-							    <span class="input-group-text">$</span>
+							    <span class="input-group-text" style="color:#49bbff">$</span>
 							  </div>
 							  <input type="text" pattern="[0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="billable_hourly_rate" name="billable_rate" class="form-control" required>
 							</div>
@@ -474,7 +474,7 @@
 
 							<div class="input-group col-md-6 float-md-right" id="numWorkersGroup" style="transition: all 2s;">
 							  <div class="input-group-prepend">
-							    <span class="input-group-text"><i class="fas fa-male fa-lg"></i></span>
+							    <span class="input-group-text"><i class="fas fa-male fa-lg" style="color:#49bbff"></i></span>
 							  </div>
 							  <input type="text" pattern="[0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-12 float-md-right" id="numOfWorkers" name="numOfWorkers" placeholder="ex. 10" required>
 							</div>
