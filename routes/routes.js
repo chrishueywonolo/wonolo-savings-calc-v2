@@ -239,6 +239,21 @@ router.post('/contact', (req,res) => {
 		}
 	}
 
+	// send to zapier sheet
+
+
+	axios.post('https://hooks.zapier.com/hooks/catch/2761357/ape7jx/',postData)
+	.then((response) => {
+		console.log('sent info to zapier');
+		console.log(response);
+		// don't do anything
+		
+	})
+	.catch((error) => {
+		console.log('error sending data obj to zapier');
+		console.log(error);
+	})
+
 
 	var url = 'https://forms.hubspot.com/uploads/form/v2/1862878/7bcb73a8-e9db-498f-a6ad-12ab975472be';
 
