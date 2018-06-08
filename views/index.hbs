@@ -188,8 +188,16 @@
     		});
 
     		$("#contact_true").change(function() {
-    			call_me = $(this).val();
-    			console.log(call_me);
+    			// call_me = $(this).val();
+    			if ($('#contact_true').is(":checked")) {
+					// it is checked
+					call_me = true;
+				  
+				} else {
+
+					call_me = false;
+
+				}
     		})
 
 
