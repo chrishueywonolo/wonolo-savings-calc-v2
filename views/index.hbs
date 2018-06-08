@@ -155,6 +155,7 @@
 
 
 			var first_name, last_name, email, phone, company, position;
+			var call_me = false;
 
 			$("#first_name").change(function() {
     			first_name = $(this).val();
@@ -186,6 +187,11 @@
     			console.log(position);
     		});
 
+    		$("#contact_true").change(function() {
+    			call_me = $(this).val();
+    			console.log(call_me);
+    		})
+
 
 
 
@@ -209,6 +215,7 @@
 					phone: phone,
 					company: company,
 					position: position,
+					call_me: call_me,
 					industry: industry,
 
     			})

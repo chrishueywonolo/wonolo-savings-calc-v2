@@ -189,8 +189,9 @@ router.post('/contact', (req,res) => {
 	var company = req.body.company;
 	var position = req.body.position;
 	var industry = req.body.industry;
+	var call_me = req.body.call_me;
 
-	console.log(email, first_name, last_name, phone, company, position, industry);
+	console.log(email, first_name, last_name, phone, company, position, industry, call_me);
 
 
 	// build the data object
