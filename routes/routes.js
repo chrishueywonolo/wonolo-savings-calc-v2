@@ -243,7 +243,7 @@ router.post('/contact', (req,res) => {
 	// send to zapier sheet
 
 
-	axios.post('https://hooks.zapier.com/hooks/catch/2761357/ape7jx/',postData)
+	axios.post('https://hooks.zapier.com/hooks/catch/2761357/apcxmr/',postData)
 	.then((response) => {
 		console.log('sent info to zapier');
 		console.log(response);
