@@ -89,8 +89,8 @@ p {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
 	font-weight: 600;
-	border: solid 2px #3498db;
-	color: #3498db;
+	border: solid 2px #FFDC00;
+	color: #FFDC00;
 	background-color: none;
 /*	padding-top: 2%;
 	padding-bottom: 2%;*/
@@ -103,9 +103,9 @@ p {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
 	font-weight: 600;
-	border: solid 2px #3498db;
+	border: solid 2px #FFDC00;
 	color: #FFFFFF;
-	background-color: #3498db;
+	background-color: #FFDC00;
 
 }
 
@@ -183,6 +183,8 @@ p {
 	font-size: 12px;
 	font-weight: 600;
 	border-radius: 0px;
+	background-color: #FFDC00;
+	color: #ffffff;
 }
 
 .divider {
