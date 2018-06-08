@@ -90,7 +90,7 @@ router.post('/calculate-savings', (req, res) => {
 
 				if(billableRate < minimum_wage){
 
-					var min_wage_msg = "Please enter a value above the minimum wage for your area.";
+					var min_wage_msg = "Please enter a billable rate value above the minimum wage in your area.";
 					var obj = {
 
 						min_wage_err: true,
