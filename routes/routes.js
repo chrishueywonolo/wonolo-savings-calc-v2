@@ -81,8 +81,12 @@ router.post('/calculate-savings', (req, res) => {
 				console.log('starting to find the fill rate');
 
 
+				console.log("minimum wage", response.minimum_wage);
+
 				var minimum_wage = response.minimum_wage;
 
+				console.log("billable rate", billableRate);
+				console.log(minimum_wage);
 
 				if(billableRate < minimum_wage){
 
