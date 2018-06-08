@@ -222,6 +222,7 @@ router.post('/contact', (req,res) => {
 	    'phone': phone,
 	    'company': company,
 	    'jobtitle': position,
+	    'contact_me': call_me,
 	    'hs_context': JSON.stringify({
 	        "hutk": req.cookies.hubspotutk,
 	        "ipAddress": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
