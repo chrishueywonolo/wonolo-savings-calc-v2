@@ -35,23 +35,23 @@
     		
     		$("#staffingAgency").change(function() {
     			staffingAgency = $(this).val();
-    			console.log(staffingAgency);
+    			// console.log(staffingAgency);
     		});
     		$("#industry").change(function() {
     			industry = $(this).val();
-    			console.log(industry);
+    			// console.log(industry);
     		});
     		$("#zipcode").change(function() {
     			zipcode = $(this).val();
-    			console.log(zipcode);
+    			// console.log(zipcode);
     		});
     		$("#billable_hourly_rate").change(function() {
     			billableRate = $(this).val();
-    			console.log(billableRate);
+    			// console.log(billableRate);
     		});
     		$("#numOfWorkers").change(function() {
     			numOfWorkers = $(this).val();
-    			console.log(numOfWorkers);
+    			// console.log(numOfWorkers);
     		});
 
 			$("input:radio[name='agencyBool']").change(function() {
@@ -88,27 +88,41 @@
     			})
     			.then((response) => {
 
-    				// use res.body.data values
-    				// to populate the dynamic html
 
-    				console.log('CalculateSavings() response');
-    				// console.log(res);
+    				if(response.data.min_wage_err){
 
-    				var total_savings_amount = Math.round(response.data.savings);
-    				total_savings_amount = total_savings_amount.toLocaleString();
-    				var savings_msg = response.data.savings_msg;
+    					console.log('min wage error');
+    					// create error message alert???
+    					$("#message").switchClass("alert-success", "alert-danger").fadeIn(300);
+    					$("#inner-message").html(response.data.min_wage_msg);
 
-    				var fill_rate_percent = Math.round(parseFloat(response.data.fill_rate)*100);
-    				var fill_rate_msg = response.data.fill_rate_msg;
+    				} else {
 
-    				$("#savingsAmount").text(total_savings_amount);
-    				$("#savings_msg").text(savings_msg);
+    					// use res.body.data values
+	    				// to populate the dynamic html
 
-    				$("#fillRateValue").text(fill_rate_percent);
-    				$("#fillRateMsg").text(fill_rate_msg);
+	    				console.log('CalculateSavings() response');
+	    				// console.log(res);
+
+	    				var total_savings_amount = Math.round(response.data.savings);
+	    				total_savings_amount = total_savings_amount.toLocaleString();
+	    				var savings_msg = response.data.savings_msg;
+
+	    				var fill_rate_percent = Math.round(parseFloat(response.data.fill_rate)*100);
+	    				var fill_rate_msg = response.data.fill_rate_msg;
+
+	    				$("#savingsAmount").text(total_savings_amount);
+	    				$("#savings_msg").text(savings_msg);
+
+	    				$("#fillRateValue").text(fill_rate_percent);
+	    				$("#fillRateMsg").text(fill_rate_msg);
 
 
-    				delayResults(showResults);
+	    				delayResults(showResults);
+
+    				}
+
+    				
 
     			})
     			.catch((err) => {
@@ -159,32 +173,32 @@
 
 			$("#first_name").change(function() {
     			first_name = $(this).val();
-    			console.log(first_name);
+    			// console.log(first_name);
     		});
 
     		$("#last_name").change(function() {
     			last_name = $(this).val();
-    			console.log(last_name);
+    			// console.log(last_name);
     		});
 
     		$("#email").change(function() {
     			email = $(this).val();
-    			console.log(email);
+    			// console.log(email);
     		});
 
     		$("#phone").change(function() {
     			phone = $(this).val();
-    			console.log(phone);
+    			// console.log(phone);
     		});
 
     		$("#company").change(function() {
     			company = $(this).val();
-    			console.log(company);
+    			// console.log(company);
     		});
 
     		$("#position").change(function() {
     			position = $(this).val();
-    			console.log(position);
+    			// console.log(position);
     		});
 
     		$("#contact_true").change(function() {
@@ -198,14 +212,14 @@
 					call_me = false;
 
 				}
-				console.log(call_me);
+				// console.log(call_me);
     		})
 
 
 
 
 			$("#contact-us").submit(function(event){
-				console.log('whatever')
+				// console.log('whatever')
 				event.preventDefault();
 				submitContact();
 
@@ -266,7 +280,7 @@
 	<!-- Alerts -->
 
 	<div id="message" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
-	  <span id="inner-message"><strong>Holy guacamole!</strong> You should check in on some of those fields below.</span>
+	  <span id="inner-message"></span>
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    <span aria-hidden="true">&times;</span>
 	  </button>

@@ -82,6 +82,22 @@ router.post('/calculate-savings', (req, res) => {
 
 
 				var minimum_wage = response.minimum_wage;
+
+
+				if(billableRate < minimum_wage){
+
+					var min_wage_msg = "Please enter a value above the minimum wage for your area.";
+					var obj = {
+
+						min_wage_err: true,
+						min_wage_msg: min_wage_msg
+
+					};
+
+					res.send(obj);
+
+				}
+
 				var hourlyWage = billableRate * .6;
 
 		    	// Retrieve fill rate
