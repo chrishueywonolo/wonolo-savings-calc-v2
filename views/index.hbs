@@ -192,12 +192,13 @@
     			if ($('#contact_true').is(":checked")) {
 					// it is checked
 					call_me = true;
-				  
+
 				} else {
 
 					call_me = false;
 
 				}
+				console.log(call_me);
     		})
 
 
@@ -235,6 +236,8 @@
     				$("#message").fadeIn(300);
     				$("#inner-message").text(response.data);
 
+    				window.setTimeout(hideMessage, 2000);
+
     			})
     			.catch((err) => {
     				console.log("an error has occured in submitting contact");
@@ -242,6 +245,10 @@
     			})
 
 
+			}
+
+			function hideMessage(){
+				$("message").fadeOut(800);
 			}
 
 
