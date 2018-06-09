@@ -47,7 +47,7 @@ p {
 .section__heading {
 
 	color: #FFFFFF;
-	font-size: 70px;
+	font-size: 4rem;
 	font-family: 'Montserrat', sans-serif;
 
 }
@@ -112,7 +112,7 @@ p {
 
 #resultsContainer {
 
-	margin-bottom: 50px;
+	/*margin-bottom: 50px;*/
 
 }
 
