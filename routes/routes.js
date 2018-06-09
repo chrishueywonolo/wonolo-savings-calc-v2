@@ -22,6 +22,29 @@ router.post('/calculate-savings', (req, res) => {
 	var billableRate = parseInt(req.body.billableRate);
 	var staffingAgency = req.body.staffingAgency;
 	var numOfWorkers = parseInt(req.body.numOfWorkers);
+	var useStaffingAgency = req.body.useStaffingAgency;
+
+	var zap_obj = {
+		industry,
+		zipcode,
+		billableRate,
+		staffingAgency,
+		numOfWorkers,
+		useStaffingAgency
+	}
+
+	axios.post('https://hooks.zapier.com/hooks/catch/2761357/an40ps/',zap_obj)
+	.then((response) => {
+		console.log('sent staffing info to zapier');
+		console.log(response);
+		// don't do anything
+		
+	})
+	.catch((error) => {
+		console.log('error sending data obj to zapier');
+		console.log(error);
+	})
+
 
 
 	// get the geocode
