@@ -242,3 +242,15 @@ input, select, .modal-title, .modal-body {
 	margin:0 auto;
 
 }
+
+
+#read-case-study {
+	font-family: 'Montserrat', sans-serif;
+	padding: 10px 15px 10px 15px;
+	font-size: 12px;
+	font-weight: 600;
+	border-radius: 0px;
+	background-color: #FFDC00;
+	color: #000000;
+    border-color: #FFDC00;
+}
