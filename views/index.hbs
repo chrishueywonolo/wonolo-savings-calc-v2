@@ -123,27 +123,35 @@
 
 
 	    				delayResults(showResults);
-
+	    				var caseStudyContent;
 
 		    			if(response.data.industry === "Delivery"){
 
-							console.log("The industry is: " + response.data.industry);
+							// console.log("The industry is: " + response.data.industry);
+							caseStudyContent = "";
 							$("#caseStudyImg").attr("src", "/images/delivery.png");
+							$("#caseStudyDesc").text(caseStudyContent);
 
 						} else if(response.data.industry === "Merchandising") {
 
-							console.log("The industry is: " + response.data.industry);
+							// console.log("The industry is: " + response.data.industry);
+							caseStudyContent = "";
 							$("#caseStudyImg").attr("src", "/images/retail.png");
+							$("#caseStudyDesc").text(caseStudyContent);
 
 					    } else if(response.data.industry === "Event_Staff") {
 
-					    	console.log("The industry is: " + response.data.industry);
+					    	// console.log("The industry is: " + response.data.industry);
+					    	caseStudyContent = "";
 					    	$("#caseStudyImg").attr("src", "/images/event_staffing.png");
+					    	$("#caseStudyDesc").text(caseStudyContent);
 
 					    } else {
 
-					    	console.log("The industry is: " + response.data.industry);
+					    	// console.log("The industry is: " + response.data.industry);
+					    	caseStudyContent = "";
 					    	$("#caseStudyImg").attr("src", "/images/warehousing.png");
+					    	$("#caseStudyDesc").text(caseStudyContent);
 
 					    }
 
@@ -382,6 +390,7 @@
 					      	<div class="row">
 						      	<div class="col-12 col-md-6">
 						      		<img src="#" id="caseStudyImg" class="col-12" alt=""/>
+						      		<p id="caseStudyDesc"></p>
 						      	</div>
 						      	<div class="col-12 col-md-6 pt-5 pt-md-0">
 						      		{{> contact_form}}
