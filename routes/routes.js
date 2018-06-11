@@ -155,7 +155,7 @@ router.post('/calculate-savings', (req, res) => {
 					console.log("this is the fill rate percentage: " + fill_rate_percentage);
 
 
-					if(fill_rate_percentage > .85){
+					if(fill_rate_percentage >= .86){
 
 						real_fill_rate = fill_rate_percentage;
 						fill_rate_msg = "Wow, looks like Wonolo is a great fit for your staffing needs. We encourage you to chat with a Wonolo Specialist to discuss how your business can benefit from using Wonolo.";

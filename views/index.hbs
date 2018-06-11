@@ -70,20 +70,24 @@
     		});
 
 
-			if(industry == "Delivery"){
+			if(industry === "Delivery"){
 
-				document.getElementById("#caseStudyImg").src ="../public/images/delivery.png";
+				console.log("The industry is: " + industry);
+				document.getElementById("#caseStudyImg").src = "../public/images/delivery.png";
 
-			} else if(industry == "Merchandising") {
+			} else if(industry === "Merchandising") {
 
+				console.log("The industry is: " + industry);
 		        document.getElementById("caseStudyImg").src = "../public/images/retail.png";
 
-		    } else if(industry == "Event_Staff") {
+		    } else if(industry === "Event_Staff") {
 
+		    	console.log("The industry is: " + industry);
 		        document.getElementById("caseStudyImg").src = "../public/images/event_staffing.png";
 
 		    } else {
 
+		    	console.log("The industry is: " + industry);
 		        document.getElementById("caseStudyImg").src = "../public/images/warehousing.png";
 
 		    }
@@ -332,7 +336,7 @@
 					<!-- Headline + subheadline -->
 					<div class="col-12 pl-md-0 pr-md-0">
 						<p class="results__heading">Estimated Annual Savings</p>
-						<p class="results__subheading"><span id="savings_msg"></span></p>
+						
 					</div>
 				</div>
 				<div class="row">
@@ -340,6 +344,7 @@
 					<div class="col-12" id="estimatedSavings">
 						<p>Estimated dollar amount you'll be saving this year</p>
 						<h3>$<span id="savingsAmount"></span></h3>
+						<p class="results__subheading"><span id="savings_msg"></span></p>
 					</div>
 				</div>
 				<div class="row">
@@ -347,7 +352,7 @@
 					<div class="col-12" id="fillRate">
 						<p>Fill Rate<i class="fas fa-info-circle" style="margin-left:10px" data-toggle="popover" data-trigger="hover" title="Fill Rate" data-content="Fill Rate is estimated based on your region, industry, hourly wage, and Wonolo's historical performance."></i></p>
 						<h3><span id="fillRateValue"></span>%</h3>
-						<p><span id="fillRateMsg">You may need some help to make a plan that will work for you. We have advisors who can help you at no charge. Schedule an appointment.</span></p>
+						<p><span id="fillRateMsg"></span></p>
 					</div>
 				</div>
 				<div class="row">
@@ -390,7 +395,7 @@
 			<!-- formContainer -->
 			<div class="col-12" id="formContainer" style="transition: all 2s;">
 				<form id="savingsCalc" method="post" enctype="multipart/form-data">
-					<div class="row question">
+					<div class="row question pt-md-0">
 						<div class="col-12 col-md-6">
 							<!-- Mobile Screen -->
 							<p class="d-block d-sm-none text-center">Industry</p>
