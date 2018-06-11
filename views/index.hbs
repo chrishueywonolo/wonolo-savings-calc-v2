@@ -46,17 +46,12 @@
     			// console.log(zipcode);
 
     		});
-    		$("#billable_hourly_rate").change(function() {
+    		$("#billable_hourly_rate").change(function(event) {
     			billableRate = $(this).val();
+
     			// console.log(billableRate);
-    			if(billableRate.length() = 1){
-
-    				if(billableRate = 0){
-
-    				}
-    			}
-
     		});
+
     		$("#numOfWorkers").change(function() {
     			numOfWorkers = $(this).val();
     			// console.log(numOfWorkers);
@@ -314,9 +309,12 @@
 
 
 
+			
+
+
     	}); // document.ready() end
 
-		
+
 
     </script>
 
@@ -535,7 +533,7 @@
 							  <div class="input-group-prepend">
 							    <span class="input-group-text"><i class="fas fa-male fa-lg"></i></span>
 							  </div>
-							  <input type="text" pattern="[0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-12 float-md-right" id="numOfWorkers" name="numOfWorkers" placeholder="ex. 10" required>
+							  <input type="text" pattern="[1--9][0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-12 float-md-right" id="numOfWorkers" name="numOfWorkers" placeholder="ex. 10" required>
 							</div>
 							
 						</div>
