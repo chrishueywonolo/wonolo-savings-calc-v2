@@ -44,10 +44,18 @@
     		$("#zipcode").change(function() {
     			zipcode = $(this).val();
     			// console.log(zipcode);
+
     		});
     		$("#billable_hourly_rate").change(function() {
     			billableRate = $(this).val();
     			// console.log(billableRate);
+    			if(billableRate.length() = 1){
+
+    				if(billableRate = 0){
+
+    				}
+    			}
+
     		});
     		$("#numOfWorkers").change(function() {
     			numOfWorkers = $(this).val();
@@ -331,7 +339,7 @@
 	  <div class="container">
 	  	<div class="col-12">
 		    <h1 class="section__heading text-center">Workforce Savings Estimator</h1>
-		    <h2 class="section__subheading text-center col-md-9 offset-md-1">By leveraging technology, Wonolo is able to fulfill your fluctuating workforce needs at a fraction of the cost. Use our Savings Estimator to find out just how much we can save your business.</h2>
+		    <h2 class="section__subheading text-center col-md-10 offset-md-1">By leveraging technology, Wonolo is able to fulfill your fluctuating workforce needs at a fraction of the cost. Use our Savings Estimator to find out just how much we can save your business.</h2>
 		</div>
 	  </div>
 	</div>
@@ -460,7 +468,7 @@
 							  <div class="input-group-prepend">
 							    <span class="input-group-text">$</span>
 							  </div>
-							  <input type="text" pattern="[0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="billable_hourly_rate" name="billable_rate" class="form-control" required>
+							  <input type="text" pattern="[1-9][0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="billable_hourly_rate" name="billable_rate" class="form-control" required>
 							</div>
 
 						</div>
