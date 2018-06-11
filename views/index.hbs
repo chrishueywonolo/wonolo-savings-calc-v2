@@ -48,7 +48,6 @@
     		});
     		$("#billable_hourly_rate").change(function(event) {
     			billableRate = $(this).val();
-
     			// console.log(billableRate);
     		});
 
@@ -84,6 +83,13 @@
 
     		function calculateSavings(){
     			console.log("calculating savings now...")
+
+
+
+    			// checkInputValidation(billableRate, numOfWorkers)
+
+
+
     			axios.post('/calculate-savings', {
     				industry: industry,
 					zipcode: zipcode,
@@ -173,6 +179,25 @@
     			
     		}
 
+
+    		// function checkInputValidation(billableRate, numOfWorkers){
+
+    		// 	console.log(typeof billableRate);
+    		// 	if(billableRate[0] = 0){
+
+    		// 		var err_message = "Your billable rate can not begin with 0";
+
+    		// 	}
+
+    		// 	console.log(typeof numOfWorkers);
+    		// 	if(numOfWorkers[0] = 0){
+
+    		// 		var err_message = "Number of workers can not begin with 0";
+
+    		// 	}
+
+
+    		// }
 
 
 			function showResults(){
