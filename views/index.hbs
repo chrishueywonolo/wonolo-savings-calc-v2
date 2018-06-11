@@ -40,27 +40,6 @@
     		$("#industry").change(function() {
     			industry = $(this).val();
     			// console.log(industry);
-				if(industry === "Delivery"){
-
-					console.log("The industry is: " + industry);
-					document.getElementById("#caseStudyImg").src = "/images/delivery.png";
-
-				} else if(industry === "Merchandising") {
-
-					console.log("The industry is: " + industry);
-			        document.getElementById("caseStudyImg").src = "/images/retail.png";
-
-			    } else if(industry === "Event_Staff") {
-
-			    	console.log("The industry is: " + industry);
-			        document.getElementById("caseStudyImg").src = "/images/event_staffing.png";
-
-			    } else {
-
-			    	console.log("The industry is: " + industry);
-			        document.getElementById("caseStudyImg").src = "/images/warehousing.png";
-
-			    }
     		});
     		$("#zipcode").change(function() {
     			zipcode = $(this).val();
@@ -91,7 +70,38 @@
     		});
 
 
+			if(industry){
 
+
+				if(industry === "Delivery"){
+
+					console.log("The industry is: " + industry);
+					document.getElementById("#caseStudyImg").src = "/images/delivery.png";
+
+				} else if(industry === "Merchandising") {
+
+					console.log("The industry is: " + industry);
+			        document.getElementById("caseStudyImg").src = "/images/retail.png";
+
+			    } else if(industry === "Event_Staff") {
+
+			    	console.log("The industry is: " + industry);
+			        document.getElementById("caseStudyImg").src = "/images/event_staffing.png";
+
+			    } else {
+
+			    	console.log("The industry is: " + industry);
+			        document.getElementById("caseStudyImg").src = "/images/warehousing.png";
+
+			    }
+
+
+
+			} else {
+
+				document.getElementById("caseStudyImg").src = "/images/warehousing.png";
+				
+			}
 
 
 
