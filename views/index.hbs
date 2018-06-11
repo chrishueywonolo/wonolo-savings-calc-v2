@@ -121,26 +121,26 @@
 
 	    				delayResults(showResults);
 
-	    				
+
 		    			if(response.data.industry === "Delivery"){
 
 							console.log("The industry is: " + response.data.industry);
-							document.getElementById("#caseStudyImg").src = "/images/delivery.png";
+							$("#caseStudyImg").attr("src", "/images/delivery.png");
 
 						} else if(response.data.industry === "Merchandising") {
 
 							console.log("The industry is: " + response.data.industry);
-					        document.getElementById("caseStudyImg").src = "/images/retail.png";
+							$("#caseStudyImg").attr("src", "/images/retail.png");
 
 					    } else if(response.data.industry === "Event_Staff") {
 
 					    	console.log("The industry is: " + response.data.industry);
-					        document.getElementById("caseStudyImg").src = "/images/event_staffing.png";
+					    	$("#caseStudyImg").attr("src", "/images/event_staffing.png");
 
 					    } else {
 
 					    	console.log("The industry is: " + response.data.industry);
-					        document.getElementById("caseStudyImg").src = "/images/warehousing.png";
+					    	$("#caseStudyImg").attr("src", "/images/warehousing.png");
 
 					    }
 
