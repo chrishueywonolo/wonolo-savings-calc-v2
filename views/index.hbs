@@ -70,6 +70,26 @@
     		});
 
 
+			if(industry == "Delivery"){
+
+				document.getElementById("#caseStudyImg").src ="../public/images/delivery.png";
+
+			} else if(industry == "Merchandising") {
+
+		        document.getElementById("caseStudyImg").src = "../public/images/retail.png";
+
+		    } else if(industry == "Event_Staff") {
+
+		        document.getElementById("caseStudyImg").src = "../public/images/event_staffing.png";
+
+		    } else {
+
+		        document.getElementById("caseStudyImg").src = "../public/images/warehousing.png";
+
+		    }
+
+
+
     		$("#savingsCalc").submit(function(event){
     			
 				event.preventDefault();
@@ -352,7 +372,12 @@
 					        </button>
 					      </div>
 					      <div class="modal-body">
-				      		{{> contact_form}}
+					      	<div class="col-md-6">
+					      		<img id="caseStudyImg" src="#" alt="" width="" height=""/>
+					      	</div>
+					      	<div class="col-md-6">
+					      		{{> contact_form}}
+					      	</div>
 					      </div>
 					    </div>
 					  </div>
