@@ -40,27 +40,27 @@
     		$("#industry").change(function() {
     			industry = $(this).val();
     			// console.log(industry);
-				if(industry === "Delivery"){
+				// if(industry === "Delivery"){
 
-					console.log("The industry is: " + industry);
-					document.getElementById("#caseStudyImg").src = "../public/images/delivery.png";
+				// 	console.log("The industry is: " + industry);
+				// 	document.getElementById("#caseStudyImg").src = "../public/images/delivery.png";
 
-				} else if(industry === "Merchandising") {
+				// } else if(industry === "Merchandising") {
 
-					console.log("The industry is: " + industry);
-			        document.getElementById("caseStudyImg").src = "../public/images/retail.png";
+				// 	console.log("The industry is: " + industry);
+			 //        document.getElementById("caseStudyImg").src = "../public/images/retail.png";
 
-			    } else if(industry === "Event_Staff") {
+			 //    } else if(industry === "Event_Staff") {
 
-			    	console.log("The industry is: " + industry);
-			        document.getElementById("caseStudyImg").src = "../public/images/event_staffing.png";
+			 //    	console.log("The industry is: " + industry);
+			 //        document.getElementById("caseStudyImg").src = "../public/images/event_staffing.png";
 
-			    } else {
+			 //    } else {
 
-			    	console.log("The industry is: " + industry);
-			        document.getElementById("caseStudyImg").src = "../public/images/warehousing.png";
+			 //    	console.log("The industry is: " + industry);
+			 //        document.getElementById("caseStudyImg").src = "../public/images/warehousing.png";
 
-			    }
+			 //    }
     		});
     		$("#zipcode").change(function() {
     			zipcode = $(this).val();
@@ -379,7 +379,7 @@
 					      </div>
 					      <div class="modal-body">
 					      	<div class="col-md-6">
-					      		<img id="caseStudyImg" src="#" alt="" width="" height=""/>
+					      		<img src="../public/images/delivery.png" id="caseStudyImg" alt="" width="" height=""/>
 					      	</div>
 					      	<div class="col-md-6">
 					      		{{> contact_form}}
