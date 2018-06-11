@@ -185,6 +185,7 @@ router.post('/calculate-savings', (req, res) => {
 						fill_rate_msg: fill_rate_msg,
 						savings: savingsAmount,
 						savings_msg: selected_savings_msg,
+						industry: industry,
 
 					}
 

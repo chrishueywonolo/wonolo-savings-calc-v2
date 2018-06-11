@@ -69,37 +69,6 @@
 
     		});
 
-
-			$("#industry").change(function() {
-    			industry = $(this).val();
-    			// console.log(industry);
-    			if(industry === "Delivery"){
-
-					console.log("The industry is: " + industry);
-					document.getElementById("#caseStudyImg").src = "/images/delivery.png";
-
-				} else if(industry === "Merchandising") {
-
-					console.log("The industry is: " + industry);
-			        document.getElementById("caseStudyImg").src = "/images/retail.png";
-
-			    } else if(industry === "Event_Staff") {
-
-			    	console.log("The industry is: " + industry);
-			        document.getElementById("caseStudyImg").src = "/images/event_staffing.png";
-
-			    } else {
-
-			    	console.log("The industry is: " + industry);
-			        document.getElementById("caseStudyImg").src = "/images/warehousing.png";
-
-			    }
-    		});
-
-				
-
-
-
     		$("#savingsCalc").submit(function(event){
     			
 				event.preventDefault();
@@ -151,6 +120,30 @@
 
 
 	    				delayResults(showResults);
+
+	    				
+		    			if(response.data.industry === "Delivery"){
+
+							console.log("The industry is: " + response.data.industry);
+							document.getElementById("#caseStudyImg").src = "/images/delivery.png";
+
+						} else if(response.data.industry === "Merchandising") {
+
+							console.log("The industry is: " + response.data.industry);
+					        document.getElementById("caseStudyImg").src = "/images/retail.png";
+
+					    } else if(response.data.industry === "Event_Staff") {
+
+					    	console.log("The industry is: " + response.data.industry);
+					        document.getElementById("caseStudyImg").src = "/images/event_staffing.png";
+
+					    } else {
+
+					    	console.log("The industry is: " + response.data.industry);
+					        document.getElementById("caseStudyImg").src = "/images/warehousing.png";
+
+					    }
+
 
     				}
 
