@@ -111,6 +111,20 @@ router.post('/calculate-savings', (req, res) => {
 				console.log("billable rate", billableRate);
 				console.log(minimum_wage);
 
+
+				var hourlyWage;
+
+
+				if(useStaffingAgency === "no"){
+
+					hourlyWage = billableRate;
+
+				} else {
+					
+					hourlyWage = billableRate * .6;
+
+				}
+
 				if(billableRate < minimum_wage){
 
 					var min_wage_msg = "Please enter a billable rate value above the minimum wage in your area.";
@@ -124,8 +138,6 @@ router.post('/calculate-savings', (req, res) => {
 					res.send(obj);
 
 				}
-
-				var hourlyWage = billableRate * .6;
 
 		    	// Retrieve fill rate
 
