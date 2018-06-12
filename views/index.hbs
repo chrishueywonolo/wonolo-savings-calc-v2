@@ -55,6 +55,7 @@
 
     		});
 
+
     		$("#billable_hourly_rate").change(function() {
     			billableRate = $(this).val();
     			console.log(typeof billableRate, billableRate);
@@ -412,11 +413,10 @@
 			}
 
 
-
-			
-
-
     	}); // document.ready() end
+	
+
+
 
 
 
@@ -617,7 +617,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text">$</span>
 								</div>
-								<input type="text" pattern="[1-9][0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="billable_hourly_rate" name="billable_rate" class="form-control" required>
+								<input type="text" pattern="[1-9][0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57"id="billable_hourly_rate" name="billable_rate" class="form-control" required>
 								<div id="billable_rate_feedback" class="invalid-feedback">
 									<span id="billable_rate_msg"></span>
 								</div>
