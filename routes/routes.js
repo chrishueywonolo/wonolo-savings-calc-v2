@@ -19,14 +19,14 @@ router.post('/calculate-savings', (req, res) => {
 
 
 	var billableRate = req.body.billableRate;
-	if(billableRate[0] === "0"){
+	if(billableRate[0] == "0"){
 		billableRate = billableRate.slice(1,billableRate.length);
 		billableRate = parseInt(billableRate);
 	}
 
 
 	var numOfWorkers = req.body.numOfWorkers;
-	if(numOfWorkers[0] === "0"){
+	if(numOfWorkers[0] == "0"){
 		numOfWorkers = numOfWorkers.slice(1,numOfWorkers.length);
 		numOfWorkers = parseInt(numOfWorkers);
 	}
