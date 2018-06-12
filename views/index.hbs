@@ -55,11 +55,13 @@
 
     		});
 
-    		$("#billable_hourly_rate").change(function(event) {
+    		$("#billable_hourly_rate").change(function() {
     			billableRate = $(this).val();
     			console.log(typeof billableRate, billableRate);
     			console.log('the length is: ', billableRate.length);
     			if(parseInt(billableRate) = 0){
+
+    				console.log(parseInt(billableRate));
 
     				validation_err = true;
     				validation_err_msg = "Billable rate/hourly wage value can not equal 0.";
@@ -85,10 +87,7 @@
 
     		$("#numOfWorkers").change(function() {
     			numOfWorkers = $(this).val();
-    			// console.log(numOfWorkers);
-    			// if(numOfWorkers = 0){
-    			// 	// create error
-    			// }
+
     		});
 
 
