@@ -21,6 +21,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.1.3/dist/bootstrap-validate.js" ></script>
+
     <script>
 
     	$(document).ready(function(){
@@ -32,23 +34,50 @@
     		// set the variables
     		var industry, zipcode, billableRate, useStaffingAgency, staffingAgency, numOfWorkers;
     		var minimumWageUrl, fillRate, city, state_code, savingsAmount;
+    		var validation_err, validation_err_msg;
     		
     		$("#staffingAgency").change(function() {
     			staffingAgency = $(this).val();
     			// console.log(staffingAgency);
+
     		});
+
     		$("#industry").change(function() {
     			industry = $(this).val();
     			// console.log(industry);
+
+
     		});
+
     		$("#zipcode").change(function() {
     			zipcode = $(this).val();
     			// console.log(zipcode);
 
     		});
+
     		$("#billable_hourly_rate").change(function(event) {
     			billableRate = $(this).val();
     			// console.log(billableRate);
+    			if(parseInt(billableRate) = 0){
+
+    				validation_err = true;
+    				validation_err_msg = "Billable rate/hourly wage value can not equal 0.";
+    				// billable_rate_feedback
+					$("#billable_rate_msg").text(validation_err_msg);
+
+    			}
+
+    			if(billableRate.length >= 1){
+
+    				if(billableRate[0] === "0"){
+
+    					validation_err = true;
+	    				validation_err_msg = "Billable rate/hourly wage value can not start with a 0.";
+	    				$("#billable_rate_msg").text(validation_err_msg);
+
+    				}
+    			}
+
     		});
 
     		$("#numOfWorkers").change(function() {
@@ -91,11 +120,6 @@
 
     		function calculateSavings(){
     			console.log("calculating savings now...")
-
-
-
-    			// checkInputValidation(billableRate, numOfWorkers)
-
 
 
     			axios.post('/calculate-savings', {
@@ -187,25 +211,6 @@
     			
     		}
 
-
-    		// function checkInputValidation(billableRate, numOfWorkers){
-
-    		// 	console.log(typeof billableRate);
-    		// 	if(billableRate[0] = 0){
-
-    		// 		var err_message = "Your billable rate can not begin with 0";
-
-    		// 	}
-
-    		// 	console.log(typeof numOfWorkers);
-    		// 	if(numOfWorkers[0] = 0){
-
-    		// 		var err_message = "Number of workers can not begin with 0";
-
-    		// 	}
-
-
-    		// }
 
 
 			function showResults(){
@@ -324,7 +329,7 @@
     				$("#message").fadeIn(300);
     				$("#inner-message").text(response.data);
 
-    				window.setTimeout(hideMessage, 2000);
+    				window.setTimeout(hideMessage, 4000);
 
 
     			})
@@ -446,7 +451,7 @@
 
 			<!-- formContainer -->
 			<div class="col-12" id="formContainer" style="transition: all 2s;">
-				<form id="savingsCalc" method="post" enctype="multipart/form-data">
+				<form id="savingsCalc" method="post" enctype="multipart/form-data" novalidate>
 					<div class="row question pt-md-0">
 						<div class="col-12 col-md-6">
 							<!-- Mobile Screen -->
@@ -543,10 +548,13 @@
 						<div class="col-12 col-md-6 no-gutters">
 							
 							<div class="input-group col-md-6 float-md-right" id="billableRateGroup" style="transition: all 2s;">
-							  <div class="input-group-prepend">
-							    <span class="input-group-text">$</span>
-							  </div>
-							  <input type="text" pattern="[1-9][0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="billable_hourly_rate" name="billable_rate" class="form-control" required>
+								<div class="input-group-prepend">
+									<span class="input-group-text">$</span>
+								</div>
+								<input type="text" pattern="[1-9][0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="billable_hourly_rate" name="billable_rate" class="form-control" required>
+								<div id="billable_rate_feedback" class="valid-feedback">
+									<span id="billable_rate_msg"></span>
+								</div>
 							</div>
 
 						</div>

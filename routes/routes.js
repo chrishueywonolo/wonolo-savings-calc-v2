@@ -118,26 +118,40 @@ router.post('/calculate-savings', (req, res) => {
 				if(useStaffingAgency === "no"){
 
 					hourlyWage = billableRate;
+					if(hourlyWage < minimum_wage){
+
+						var min_wage_msg = "Please double check that you have entered a hourly wage higher than the minimum wage in your area.";
+						var obj = {
+
+							min_wage_err: true,
+							min_wage_msg: min_wage_msg
+
+						};
+
+						res.send(obj);
+
+
+					}
 
 				} else {
-					
+
 					hourlyWage = billableRate * .6;
+					if(billableRate < minimum_wage){
 
+						var min_wage_msg = "Please enter a billable rate value above the minimum wage in your area.";
+						var obj = {
+
+							min_wage_err: true,
+							min_wage_msg: min_wage_msg
+
+						};
+
+						res.send(obj);
+
+					}
 				}
 
-				if(billableRate < minimum_wage){
-
-					var min_wage_msg = "Please enter a billable rate value above the minimum wage in your area.";
-					var obj = {
-
-						min_wage_err: true,
-						min_wage_msg: min_wage_msg
-
-					};
-
-					res.send(obj);
-
-				}
+				
 
 		    	// Retrieve fill rate
 
