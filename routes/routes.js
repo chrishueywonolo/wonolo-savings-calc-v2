@@ -17,11 +17,25 @@ router.post('/calculate-savings', (req, res) => {
 	console.log("req.body data from calculate savings: ")
 	console.log(req.body);
 
+
+	var billableRate = req.body.billableRate;
+	if(billableRate[0] === "0"){
+		billableRate = billableRate.slice(1,billableRate.length);
+		billableRate = parseInt(billableRate);
+	}
+
+
+	var numOfWorkers = req.body.numOfWorkers;
+	if(numOfWorkers[0] === "0"){
+		numOfWorkers = numOfWorkers.slice(1,numOfWorkers.length);
+		numOfWorkers = parseInt(numOfWorkers);
+	}
+
 	var industry = req.body.industry;
 	var zipcode = req.body.zipcode;
-	var billableRate = parseInt(req.body.billableRate);
+	// var billableRate = parseInt(req.body.billableRate);
 	var staffingAgency = req.body.staffingAgency;
-	var numOfWorkers = parseInt(req.body.numOfWorkers);
+	// var numOfWorkers = parseInt(req.body.numOfWorkers);
 	var useStaffingAgency = req.body.useStaffingAgency;
 
 	var zap_obj = {
