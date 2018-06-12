@@ -59,18 +59,21 @@
     			billableRate = $(this).val();
     			console.log(typeof billableRate, billableRate);
     			console.log('the length is: ', billableRate.length);
-    			if(parseInt(billableRate) = 0){
 
-    				console.log(parseInt(billableRate));
-
+    			// var int_billableRate = parseInt(billableRate);
+    			// console.log(typeof int_billableRate, int_billableRate);
+    			if(parseInt(billableRate) === 0){
+    				console.log("cant be equal to 0");
     				validation_err = true;
     				validation_err_msg = "Billable rate/hourly wage value can not equal 0.";
-    				// billable_rate_feedback
 					$("#billable_rate_msg").text(validation_err_msg);
+    			} else {
+
+    				validation_err = false;
 
     			}
 
-    			if(billableRate.length >= 1){
+    			if(billableRate.length > 1){
     				console.log("billable rate length is greater than 1")
 
     				if(billableRate[0] === "0"){
@@ -80,14 +83,75 @@
 	    				validation_err_msg = "Billable rate/hourly wage value can not start with a 0.";
 	    				$("#billable_rate_msg").text(validation_err_msg);
 
+    				} else {
+
+    					validation_err = false;
+
     				}
+    			}
+
+    			if(validation_err){
+
+    				console.log("there is a validation error");
+    				$("#billable_rate_feedback").switchClass("valid-feedback", "invalid-feedback");
+    				$("#billable_rate_feedback").css("display", "inline");
+
+
+    			} else {
+
+    				console.log("there is no validation error");
+    				$("#billable_rate_feedback").switchClass("invalid-feedback", "valid-feedback");
+    				validation_err_msg = "Good";
+    				$("#billable_rate_msg").text(validation_err_msg);
+
     			}
 
     		});
 
+
     		$("#numOfWorkers").change(function() {
     			numOfWorkers = $(this).val();
+    			if(parseInt(numOfWorkers) === 0){
+    				console.log("cant be equal to 0");
+    				validation_err = true;
+    				validation_err_msg = "Number of workers can not equal 0.";
+					$("#numOfWorkers_msg").text(validation_err_msg);
+    			} else {
 
+    				validation_err = false;
+
+    			}
+
+    			if(numOfWorkers.length > 1){
+    				console.log("numOfWorkers length is greater than 1")
+
+    				if(numOfWorkers[0] === "0"){
+
+    					console.log("numOfWorkers starts with 0")
+    					validation_err = true;
+	    				validation_err_msg = "Number of workers can not start with a 0.";
+	    				$("#numOfWorkers_msg").text(validation_err_msg);
+
+    				} else {
+
+    					validation_err = false;
+
+    				}
+    			}
+
+    			if(validation_err){
+
+    				console.log("there is a validation error");
+    				$("#numOfWorkers_feedback").switchClass("valid-feedback", "invalid-feedback");
+    				$("#numOfWorkers_feedback").css("display", "inline");
+
+    			} else {
+
+    				console.log("there is no validation error");
+    				$("#numOfWorkers_feedback").switchClass("invalid-feedback", "valid-feedback");
+    				validation_err_msg = "Good";
+    				$("#numOfWorkers_msg").text(validation_err_msg);
+    			}
     		});
 
 
@@ -554,7 +618,7 @@
 									<span class="input-group-text">$</span>
 								</div>
 								<input type="text" pattern="[1-9][0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="billable_hourly_rate" name="billable_rate" class="form-control" required>
-								<div id="billable_rate_feedback" class="valid-feedback">
+								<div id="billable_rate_feedback" class="invalid-feedback">
 									<span id="billable_rate_msg"></span>
 								</div>
 							</div>
@@ -578,6 +642,9 @@
 							    <span class="input-group-text"><i class="fas fa-male fa-lg"></i></span>
 							  </div>
 							  <input type="text" pattern="[1-9][0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-12 float-md-right" id="numOfWorkers" name="numOfWorkers" placeholder="ex. 10" required>
+							  <div id="numOfWorkers_feedback" class="invalid-feedback">
+									<span id="numOfWorkers_msg"></span>
+								</div>
 							</div>
 							
 						</div>
