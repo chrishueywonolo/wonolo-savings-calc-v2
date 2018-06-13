@@ -187,11 +187,25 @@ router.post('/calculate-savings', (req, res) => {
 			    	var currentCost;
 			    	var savingsAmount;
 			    	var wonoloCost;
+			    	var can_save;
 			    	
-			    	if(useStaffingAgency == "no"){
+			    	if(useStaffingAgency === "no"){
 
 			    		currentCost = 60000; // cost to hire new employee for 1st year
-			    		savingsAmount = (currentCost - (hourlyWage * wonoloFee * standard_working_hours * avg_working_days)) * numOfWorkers
+			    		wonoloCost = hourlyWage * wonoloFee * standard_working_hours * avg_working_days;
+			    		if(wonoloCost > currentCost){
+
+			    			// do something
+			    			savingsAmount = "-";
+			    			can_save = false;
+
+			    		} else {
+
+			    			savingsAmount = (currentCost - wonoloCost) * numOfWorkers;
+			    			can_save = true;
+
+			    		}
+			    		
 
 			    	} else {
 
@@ -225,8 +239,22 @@ router.post('/calculate-savings', (req, res) => {
 
 					]
 
-					var rand_num = Math.floor(Math.random()*5);
-					var selected_savings_msg = savings_msg[rand_num]
+
+					var rand_num;
+					var selected_savings_msg;
+
+					if(can_save){
+
+						rand_num = Math.floor(Math.random()*5);
+						selected_savings_msg = savings_msg[rand_num];
+
+					} else {
+
+						selected_savings_msg = "Sorry, we're unable to provide you with an estimation. Chat with a Wonolo rep to see if we're a good fit."
+
+					}
+
+					
 
 
 					console.log("Fill rate val: " + real_fill_rate);
@@ -239,6 +267,7 @@ router.post('/calculate-savings', (req, res) => {
 						savings: savingsAmount,
 						savings_msg: selected_savings_msg,
 						industry: industry,
+						can_save: can_save,
 
 					}
 

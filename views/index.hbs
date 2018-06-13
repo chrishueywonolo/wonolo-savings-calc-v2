@@ -58,101 +58,101 @@
 
     		$("#billable_hourly_rate").change(function() {
     			billableRate = $(this).val();
-    			console.log(typeof billableRate, billableRate);
-    			console.log('the length is: ', billableRate.length);
+    	// 		console.log(typeof billableRate, billableRate);
+    	// 		console.log('the length is: ', billableRate.length);
 
-    			// var int_billableRate = parseInt(billableRate);
-    			// console.log(typeof int_billableRate, int_billableRate);
-    			if(parseInt(billableRate) === 0){
-    				console.log("cant be equal to 0");
-    				validation_err = true;
-    				validation_err_msg = "Billable rate/hourly wage value can not equal 0.";
-					$("#billable_rate_msg").text(validation_err_msg);
-    			} else {
+    	// 		// var int_billableRate = parseInt(billableRate);
+    	// 		// console.log(typeof int_billableRate, int_billableRate);
+    	// 		if(parseInt(billableRate) === 0){
+    	// 			console.log("cant be equal to 0");
+    	// 			validation_err = true;
+    	// 			validation_err_msg = "Billable rate/hourly wage value can not equal 0.";
+					// $("#billable_rate_msg").text(validation_err_msg);
+    	// 		} else {
 
-    				validation_err = false;
+    	// 			validation_err = false;
 
-    			}
+    	// 		}
 
-    			if(billableRate.length > 1){
-    				console.log("billable rate length is greater than 1")
+    	// 		if(billableRate.length > 1){
+    	// 			console.log("billable rate length is greater than 1")
 
-    				if(billableRate[0] === "0"){
+    	// 			if(billableRate[0] === "0"){
 
-    					console.log("billable rate starts with 0")
-    					validation_err = true;
-	    				validation_err_msg = "Billable rate/hourly wage value can not start with a 0.";
-	    				$("#billable_rate_msg").text(validation_err_msg);
+    	// 				console.log("billable rate starts with 0")
+    	// 				validation_err = true;
+	    // 				validation_err_msg = "Billable rate/hourly wage value can not start with a 0.";
+	    // 				$("#billable_rate_msg").text(validation_err_msg);
 
-    				} else {
+    	// 			} else {
 
-    					validation_err = false;
+    	// 				validation_err = false;
 
-    				}
-    			}
+    	// 			}
+    	// 		}
 
-    			if(validation_err){
+    	// 		if(validation_err){
 
-    				console.log("there is a validation error");
-    				$("#billable_rate_feedback").switchClass("valid-feedback", "invalid-feedback");
-    				$("#billable_rate_feedback").css("display", "inline");
+    	// 			console.log("there is a validation error");
+    	// 			$("#billable_rate_feedback").switchClass("valid-feedback", "invalid-feedback");
+    	// 			$("#billable_rate_feedback").css("display", "inline");
 
 
-    			} else {
+    	// 		} else {
 
-    				console.log("there is no validation error");
-    				$("#billable_rate_feedback").switchClass("invalid-feedback", "valid-feedback");
-    				validation_err_msg = "Good";
-    				$("#billable_rate_msg").text(validation_err_msg);
+    	// 			console.log("there is no validation error");
+    	// 			$("#billable_rate_feedback").switchClass("invalid-feedback", "valid-feedback");
+    	// 			validation_err_msg = "Good";
+    	// 			$("#billable_rate_msg").text(validation_err_msg);
 
-    			}
+    	// 		}
 
     		});
 
 
     		$("#numOfWorkers").change(function() {
     			numOfWorkers = $(this).val();
-    			if(parseInt(numOfWorkers) === 0){
-    				console.log("cant be equal to 0");
-    				validation_err = true;
-    				validation_err_msg = "Number of workers can not equal 0.";
-					$("#numOfWorkers_msg").text(validation_err_msg);
-    			} else {
+    	// 		if(parseInt(numOfWorkers) === 0){
+    	// 			console.log("cant be equal to 0");
+    	// 			validation_err = true;
+    	// 			validation_err_msg = "Number of workers can not equal 0.";
+					// $("#numOfWorkers_msg").text(validation_err_msg);
+    	// 		} else {
 
-    				validation_err = false;
+    	// 			validation_err = false;
 
-    			}
+    	// 		}
 
-    			if(numOfWorkers.length > 1){
-    				console.log("numOfWorkers length is greater than 1")
+    	// 		if(numOfWorkers.length > 1){
+    	// 			console.log("numOfWorkers length is greater than 1")
 
-    				if(numOfWorkers[0] === "0"){
+    	// 			if(numOfWorkers[0] === "0"){
 
-    					console.log("numOfWorkers starts with 0")
-    					validation_err = true;
-	    				validation_err_msg = "Number of workers can not start with a 0.";
-	    				$("#numOfWorkers_msg").text(validation_err_msg);
+    	// 				console.log("numOfWorkers starts with 0")
+    	// 				validation_err = true;
+	    // 				validation_err_msg = "Number of workers can not start with a 0.";
+	    // 				$("#numOfWorkers_msg").text(validation_err_msg);
 
-    				} else {
+    	// 			} else {
 
-    					validation_err = false;
+    	// 				validation_err = false;
 
-    				}
-    			}
+    	// 			}
+    	// 		}
 
-    			if(validation_err){
+    	// 		if(validation_err){
 
-    				console.log("there is a validation error");
-    				$("#numOfWorkers_feedback").switchClass("valid-feedback", "invalid-feedback");
-    				$("#numOfWorkers_feedback").css("display", "inline");
+    	// 			console.log("there is a validation error");
+    	// 			$("#numOfWorkers_feedback").switchClass("valid-feedback", "invalid-feedback");
+    	// 			$("#numOfWorkers_feedback").css("display", "inline");
 
-    			} else {
+    	// 		} else {
 
-    				console.log("there is no validation error");
-    				$("#numOfWorkers_feedback").switchClass("invalid-feedback", "valid-feedback");
-    				validation_err_msg = "Good";
-    				$("#numOfWorkers_msg").text(validation_err_msg);
-    			}
+    	// 			console.log("there is no validation error");
+    	// 			$("#numOfWorkers_feedback").switchClass("invalid-feedback", "valid-feedback");
+    	// 			validation_err_msg = "Good";
+    	// 			$("#numOfWorkers_msg").text(validation_err_msg);
+    	// 		}
     		});
 
 
@@ -215,10 +215,23 @@
 
 	    				console.log('CalculateSavings() response');
 	    				// console.log(res);
+	    				var total_savings_amount;
+						var savings_msg;
 
-	    				var total_savings_amount = Math.round(response.data.savings);
-	    				total_savings_amount = total_savings_amount.toLocaleString();
-	    				var savings_msg = response.data.savings_msg;
+	    				if(response.data.can_save){
+
+	    					total_savings_amount = Math.round(response.data.savings);
+		    				total_savings_amount = total_savings_amount.toLocaleString();
+		    				savings_msg = response.data.savings_msg;
+
+	    				} else {
+
+	    					total_savings_amount = response.data.savings;
+	    					savings_msg = response.data.savings_msg;
+
+	    				}
+
+	    				
 
 	    				var fill_rate_percent = Math.round(parseFloat(response.data.fill_rate)*100);
 	    				var fill_rate_msg = response.data.fill_rate_msg;
