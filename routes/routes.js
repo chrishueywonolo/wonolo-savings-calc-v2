@@ -184,9 +184,22 @@ router.post('/calculate-savings', (req, res) => {
 					var wonoloFee = 1.4;
 					var standard_working_hours = 8;
 					var avg_working_days = 261;
-			    	var currentCost = (billableRate * numOfWorkers * standard_working_hours);
-					var wonoloCost = ((hourlyWage * wonoloFee) * numOfWorkers * standard_working_hours);
-					var savingsAmount = (currentCost - wonoloCost)*avg_working_days;
+			    	var currentCost;
+			    	var savingsAmount;
+			    	var wonoloCost;
+			    	
+			    	if(useStaffingAgency == "no"){
+
+			    		currentCost = 60000; // cost to hire new employee for 1st year
+			    		savingsAmount = (currentCost - (hourlyWage * wonoloFee * standard_working_hours * avg_working_days)) * numOfWorkers
+
+			    	} else {
+
+			    		currentCost = (billableRate * numOfWorkers * standard_working_hours); // how much you spend for 1 day
+			    		wonoloCost = ((hourlyWage * wonoloFee) * numOfWorkers * standard_working_hours); // how much you spend w/ Wonolo for 1 day
+			    		savingsAmount = (currentCost - wonoloCost) * avg_working_days; // how much you save over 1 year
+
+			    	}
 
 					var real_fill_rate;
 					var fill_rate_msg = "";
