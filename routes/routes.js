@@ -212,7 +212,7 @@ router.post('/calculate-savings', (req, res) => {
 			    		currentCost = (billableRate * numOfWorkers * standard_working_hours); // how much you spend for 1 day
 			    		wonoloCost = ((hourlyWage * wonoloFee) * numOfWorkers * standard_working_hours); // how much you spend w/ Wonolo for 1 day
 			    		savingsAmount = (currentCost - wonoloCost) * avg_working_days; // how much you save over 1 year
-
+			    		can_save = true;
 			    	}
 
 					var real_fill_rate;
