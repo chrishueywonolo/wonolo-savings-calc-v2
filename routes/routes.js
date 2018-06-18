@@ -191,7 +191,12 @@ router.post('/calculate-savings', (req, res) => {
 			    	
 			    	if(useStaffingAgency === "no"){
 
-			    		currentCost = 60000; // cost to hire new employee for 1st year
+
+			    		var annual_wage = (hourlyWage * standard_working_hours * avg_working_days);
+			    		var benefits_cost = annual_wage * .31;
+			    		var hiring_cost = annual_wage * .10;
+			    		var bad_hire_cost = annual_wage * .30;
+			    		currentCost = annual_wage + benefits_cost + hiring_cost + bad_hire_cost;
 			    		wonoloCost = hourlyWage * wonoloFee * standard_working_hours * avg_working_days;
 			    		if(wonoloCost > currentCost){
 
