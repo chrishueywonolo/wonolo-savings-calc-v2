@@ -26,7 +26,7 @@
     <script>
 
     	$(document).ready(function(){
-    		console.log("page is ready!");
+    		// console.log("page is ready!");
 
 
     		$('[data-toggle="popover"]').popover();
@@ -38,121 +38,30 @@
     		
     		$("#staffingAgency").change(function() {
     			staffingAgency = $(this).val();
-    			// console.log(staffingAgency);
 
     		});
 
     		$("#industry").change(function() {
     			industry = $(this).val();
-    			// console.log(industry);
 
 
     		});
 
     		$("#zipcode").change(function() {
     			zipcode = $(this).val();
-    			// console.log(zipcode);
 
     		});
 
 
     		$("#billable_hourly_rate").change(function() {
     			billableRate = $(this).val();
-    	// 		console.log(typeof billableRate, billableRate);
-    	// 		console.log('the length is: ', billableRate.length);
-
-    	// 		// var int_billableRate = parseInt(billableRate);
-    	// 		// console.log(typeof int_billableRate, int_billableRate);
-    	// 		if(parseInt(billableRate) === 0){
-    	// 			console.log("cant be equal to 0");
-    	// 			validation_err = true;
-    	// 			validation_err_msg = "Billable rate/hourly wage value can not equal 0.";
-					// $("#billable_rate_msg").text(validation_err_msg);
-    	// 		} else {
-
-    	// 			validation_err = false;
-
-    	// 		}
-
-    	// 		if(billableRate.length > 1){
-    	// 			console.log("billable rate length is greater than 1")
-
-    	// 			if(billableRate[0] === "0"){
-
-    	// 				console.log("billable rate starts with 0")
-    	// 				validation_err = true;
-	    // 				validation_err_msg = "Billable rate/hourly wage value can not start with a 0.";
-	    // 				$("#billable_rate_msg").text(validation_err_msg);
-
-    	// 			} else {
-
-    	// 				validation_err = false;
-
-    	// 			}
-    	// 		}
-
-    	// 		if(validation_err){
-
-    	// 			console.log("there is a validation error");
-    	// 			$("#billable_rate_feedback").switchClass("valid-feedback", "invalid-feedback");
-    	// 			$("#billable_rate_feedback").css("display", "inline");
-
-
-    	// 		} else {
-
-    	// 			console.log("there is no validation error");
-    	// 			$("#billable_rate_feedback").switchClass("invalid-feedback", "valid-feedback");
-    	// 			validation_err_msg = "Good";
-    	// 			$("#billable_rate_msg").text(validation_err_msg);
-
-    	// 		}
 
     		});
 
 
     		$("#numOfWorkers").change(function() {
     			numOfWorkers = $(this).val();
-    	// 		if(parseInt(numOfWorkers) === 0){
-    	// 			console.log("cant be equal to 0");
-    	// 			validation_err = true;
-    	// 			validation_err_msg = "Number of workers can not equal 0.";
-					// $("#numOfWorkers_msg").text(validation_err_msg);
-    	// 		} else {
 
-    	// 			validation_err = false;
-
-    	// 		}
-
-    	// 		if(numOfWorkers.length > 1){
-    	// 			console.log("numOfWorkers length is greater than 1")
-
-    	// 			if(numOfWorkers[0] === "0"){
-
-    	// 				console.log("numOfWorkers starts with 0")
-    	// 				validation_err = true;
-	    // 				validation_err_msg = "Number of workers can not start with a 0.";
-	    // 				$("#numOfWorkers_msg").text(validation_err_msg);
-
-    	// 			} else {
-
-    	// 				validation_err = false;
-
-    	// 			}
-    	// 		}
-
-    	// 		if(validation_err){
-
-    	// 			console.log("there is a validation error");
-    	// 			$("#numOfWorkers_feedback").switchClass("valid-feedback", "invalid-feedback");
-    	// 			$("#numOfWorkers_feedback").css("display", "inline");
-
-    	// 		} else {
-
-    	// 			console.log("there is no validation error");
-    	// 			$("#numOfWorkers_feedback").switchClass("invalid-feedback", "valid-feedback");
-    	// 			validation_err_msg = "Good";
-    	// 			$("#numOfWorkers_msg").text(validation_err_msg);
-    	// 		}
     		});
 
 
@@ -174,7 +83,6 @@
     			}
 
     			useStaffingAgency = $(this).val();
-    			// console.log(useStaffingAgency);
 
     		});
 
@@ -283,8 +191,8 @@
 
     			})
     			.catch((err) => {
-    				console.log("an error has occured in calculate savings");
-    				console.log(err);
+    				// console.log("an error has occured in calculate savings");
+    				// console.log(err);
     			})
 
 

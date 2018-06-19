@@ -13,9 +13,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/calculate-savings', (req, res) => {
-	console.log("inside the routes.js post...")
-	console.log("req.body data from calculate savings: ")
-	console.log(req.body);
+	// console.log("inside the routes.js post...")
+	// console.log("req.body data from calculate savings: ")
+	// console.log(req.body);
 
 
 	var billableRate = req.body.billableRate;
@@ -49,14 +49,14 @@ router.post('/calculate-savings', (req, res) => {
 
 	axios.post('https://hooks.zapier.com/hooks/catch/2761357/an40ps/',zap_obj)
 	.then((response) => {
-		console.log('sent staffing info to zapier');
-		console.log(response);
+		// console.log('sent staffing info to zapier');
+		// console.log(response);
 		// don't do anything
 		
 	})
 	.catch((error) => {
-		console.log('error sending data obj to zapier');
-		console.log(error);
+		// console.log('error sending data obj to zapier');
+		// console.log(error);
 	})
 
 
@@ -69,8 +69,8 @@ router.post('/calculate-savings', (req, res) => {
 		.then((response) => {
 			// response.data
 
-			console.log("Response from Google Maps API: ");
-			console.log(response.data.results);
+			// console.log("Response from Google Maps API: ");
+			// console.log(response.data.results);
 
 			// error handling for when invalid zipcode/zero_results
 			if(response.data.status === "ZERO_RESULTS"){
@@ -96,8 +96,8 @@ router.post('/calculate-savings', (req, res) => {
 		        }
 			}
 
-			console.log("the city is: " + city);
-			console.log("the state is: " + state_code);
+			// console.log("the city is: " + city);
+			// console.log("the state is: " + state_code);
 
 			var minimumWageUrl = `https://typ3wonolo:wontyp3y17@wonolo.herokuapp.com/get_minimum_wage?city=${city}&state_code=${state_code}`;
 
@@ -115,15 +115,15 @@ router.post('/calculate-savings', (req, res) => {
 
 			.then((response) => {
 
-				console.log('starting to find the fill rate');
+				// console.log('starting to find the fill rate');
 
-				console.log(response);
-				console.log("minimum wage", response.data.minimum_wage);
+				// console.log(response);
+				// console.log("minimum wage", response.data.minimum_wage);
 
 				var minimum_wage = response.data.minimum_wage;
 
-				console.log("billable rate", billableRate);
-				console.log(minimum_wage);
+				// console.log("billable rate", billableRate);
+				// console.log(minimum_wage);
 
 
 				var hourlyWage;
@@ -178,8 +178,8 @@ router.post('/calculate-savings', (req, res) => {
 
 				.then((response) => {
 
-					console.log("grabbed fill rate");
-					console.log(response.data);
+					// console.log("grabbed fill rate");
+					// console.log(response.data);
 
 					var wonoloFee = 1.4;
 					var standard_working_hours = 8;
@@ -224,7 +224,7 @@ router.post('/calculate-savings', (req, res) => {
 					var fill_rate_msg = "";
 					fill_rate_percentage = response.data;
 
-					console.log("this is the fill rate percentage: " + fill_rate_percentage);
+					// console.log("this is the fill rate percentage: " + fill_rate_percentage);
 
 
 					if(fill_rate_percentage >= .86){
@@ -259,11 +259,8 @@ router.post('/calculate-savings', (req, res) => {
 
 					}
 
-					
-
-
-					console.log("Fill rate val: " + real_fill_rate);
-					console.log("Savings amount: " + savingsAmount)
+					// console.log("Fill rate val: " + real_fill_rate);
+					// console.log("Savings amount: " + savingsAmount)
 
 					var result = {
 
@@ -282,20 +279,20 @@ router.post('/calculate-savings', (req, res) => {
 				})
 				.catch((error) => {
 
-					console.log("this is the error after making request ot fill rate");
+					// console.log("this is the error after making request ot fill rate");
 				})
 
 			})
 			.catch((error) => {
-				console.log("this is the error after making request to min wage");
-				console.log(error);
+				// console.log("this is the error after making request to min wage");
+				// console.log(error);
 			})
 
 		})
 		.catch((error) => {
 			// do something here
-			console.log("there is an error occuring")
-			console.log(error);
+			// console.log("there is an error occuring")
+			// console.log(error);
 		})
 
 
@@ -322,7 +319,7 @@ router.post('/contact', (req,res) => {
 	var industry = req.body.industry;
 	var call_me = req.body.call_me;
 
-	console.log(email, first_name, last_name, phone, company, position, industry, call_me);
+	// console.log(email, first_name, last_name, phone, company, position, industry, call_me);
 
 
 	// build the data object
@@ -356,14 +353,14 @@ router.post('/contact', (req,res) => {
 
 	axios.post('https://hooks.zapier.com/hooks/catch/2761357/apcxmr/',postData)
 	.then((response) => {
-		console.log('sent info to zapier');
-		console.log(response);
+		// console.log('sent info to zapier');
+		// console.log(response);
 		// don't do anything
 		
 	})
 	.catch((error) => {
-		console.log('error sending data obj to zapier');
-		console.log(error);
+		// console.log('error sending data obj to zapier');
+		// console.log(error);
 	})
 
 
@@ -409,8 +406,8 @@ router.post('/contact', (req,res) => {
 			})
 			.catch((error) => {
 
-				console.log("there was an error submitting the dynamic case study info to hubspot");
-				console.log(error);
+				// console.log("there was an error submitting the dynamic case study info to hubspot");
+				// console.log(error);
 
 
 			})
@@ -421,8 +418,8 @@ router.post('/contact', (req,res) => {
 	})
 	.catch((error) => {
 
-		console.log("an error occurred submitting to hubspot");
-		console.log(error);
+		// console.log("an error occurred submitting to hubspot");
+		// console.log(error);
 
 	})
 })
