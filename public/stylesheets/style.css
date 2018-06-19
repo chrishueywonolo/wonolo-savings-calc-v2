@@ -32,6 +32,12 @@ p {
 
 }
 
+#dislcaimer_msg {
+
+	font-size: 12px;
+	color: #efefef;
+}
+
 #hero-image {
 
 	/*height: 375px;*/

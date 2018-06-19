@@ -1,3 +1,0 @@
-function checkValidation(billableRate, numOfWorkers){
-
-}
