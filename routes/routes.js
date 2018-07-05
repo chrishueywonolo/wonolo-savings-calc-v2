@@ -149,7 +149,7 @@ router.post('/calculate-savings', (req, res) => {
 
 				} else {
 
-					hourlyWage = billableRate * .6;
+					hourlyWage = billableRate * .4;
 					if(billableRate < minimum_wage){
 
 						var min_wage_msg = "Please enter a billable rate value above the minimum wage in your area.";
@@ -226,18 +226,51 @@ router.post('/calculate-savings', (req, res) => {
 
 					// console.log("this is the fill rate percentage: " + fill_rate_percentage);
 
+					// find the difference between current_wage and minimum_wage
+					// if (difference <= 1){ fill rate is 85% }
+					// if (1 < difference <=5) { fill rate is random between 86% - 90% }
+					// if (difference > 5) { fill rate is random between 90% - 100% }
+					var wage_difference;
+					wage_difference = hourlyWage - minimum_wage;
+					var tier_2_rand_num = Math.floor(Math.random()*5);
+					var tier_3_rand_num = Math.floor(Math.random()*9);
 
-					if(fill_rate_percentage >= .86){
+					var wage_diff_fill_rate = [.86, .87, .88, .89, .90, .91, .92, .93, .94, .95, .96, .97, .98, .99];
 
-						real_fill_rate = fill_rate_percentage;
-						fill_rate_msg = "Wow, looks like Wonolo is a great fit for your staffing needs. We encourage you to chat with a Wonolo Specialist to discuss how your business can benefit from using Wonolo.";
 
-					} else {
+					if(wage_difference <= 1){
 
 						real_fill_rate = .85;
 						fill_rate_msg = "Your estimated fill rate is based on several factors. Please speak with a Wonolo Specialist to discuss how to improve this number.";
 
+					} else if (1 < wage_difference <= 5) {
+
+						real_fill_rate = wage_diff_fill_rate[Math.round(wage_difference)-1];
+						fill_rate_msg = "Wow, looks like Wonolo is a great fit for your staffing needs. We encourage you to chat with a Wonolo Specialist to discuss how your business can benefit from using Wonolo.";
+
+					} else if (5 < wage_difference <= 14) {
+
+						real_fill_rate = wage_diff_fill_rate[Math.round(wage_difference)-1];
+						fill_rate_msg = "Wow, looks like Wonolo is a great fit for your staffing needs. We encourage you to chat with a Wonolo Specialist to discuss how your business can benefit from using Wonolo.";
+
+					} else {
+
+						real_fill_rate = 1.00;
+
 					}
+
+
+					// if(fill_rate_percentage >= .86){
+
+					// 	real_fill_rate = fill_rate_percentage;
+					// 	fill_rate_msg = "Wow, looks like Wonolo is a great fit for your staffing needs. We encourage you to chat with a Wonolo Specialist to discuss how your business can benefit from using Wonolo.";
+
+					// } else {
+
+					// 	real_fill_rate = .85;
+					// 	fill_rate_msg = "Your estimated fill rate is based on several factors. Please speak with a Wonolo Specialist to discuss how to improve this number.";
+
+					// }
 
 
 					var savings_msg = ["Your CFO is smiling right now.", "Wow, you'll be saving a lot.", "I'm not a clairvoyant, but I think I see a promotion in your future.","Winner winner, chicken dinner!","Pat yourself on the back.",

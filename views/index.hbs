@@ -538,7 +538,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text">$</span>
 								</div>
-								<input type="text" pattern="[1-9][0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57"id="billable_hourly_rate" name="billable_rate" class="form-control" required>
+								<input type="text" pattern="[1-9][0-9]{4}" maxlength="4" onkeypress="return event.charCode >= 48 && event.charCode <= 57"id="billable_hourly_rate" name="billable_rate" class="form-control" required>
 								<div id="billable_rate_feedback" class="invalid-feedback">
 									<span id="billable_rate_msg"></span>
 								</div>
@@ -562,7 +562,7 @@
 							  <div class="input-group-prepend">
 							    <span class="input-group-text"><i class="fas fa-male fa-lg"></i></span>
 							  </div>
-							  <input type="text" pattern="[1-9][0-9]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-12 float-md-right" id="numOfWorkers" name="numOfWorkers" placeholder="ex. 10" required>
+							  <input type="text" pattern="[1-9][0-9]{3}" maxlength="3" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-md-12 float-md-right" id="numOfWorkers" name="numOfWorkers" placeholder="ex. 10" required>
 							  <div id="numOfWorkers_feedback" class="invalid-feedback">
 									<span id="numOfWorkers_msg"></span>
 								</div>
