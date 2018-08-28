@@ -69,8 +69,11 @@
 
     			if($(this).val() == "yes") {
 
+    				var billableRateTitleHtml = '<span id="billableRateTitle">Billable Rate <span class="fas fa-info-circle" style="margin-left:10px" data-toggle="popover" data-trigger="focus" data-placement="top" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></span><span/>'
+
     				$("#agencySelection").attr("hidden", false);
-    				$("#billableRateTitle").text("Billable Rate");
+    				// $("#billableRateTitle").text("Billable Rate");
+    				$("#mobileBillableRateTitle").html(billableRateTitleHtml);
     				$("#billableRateQues").text("What is your hourly billable rate for 1 worker?");
 
 
@@ -94,8 +97,10 @@
     		});
 
     		function calculateSavings(){
-    			console.log("calculating savings now...")
+    			// console.log("calculating savings now...")
 
+
+    			// add a calculating wheel here
 
     			axios.post('/calculate-savings', {
     				industry: industry,
@@ -107,10 +112,12 @@
     			})
     			.then((response) => {
 
+    				// remove the calculating wheel here
+
 
     				if(response.data.min_wage_err){
 
-    					console.log('min wage error');
+    					// console.log('min wage error');
     					// create error message alert???
     					$("#message").switchClass("alert-success", "alert-danger").fadeIn(300);
     					$("#inner-message").html(response.data.min_wage_msg);
@@ -121,7 +128,7 @@
     					// use res.body.data values
 	    				// to populate the dynamic html
 
-	    				console.log('CalculateSavings() response');
+	    				// console.log('CalculateSavings() response');
 	    				// console.log(res);
 	    				var total_savings_amount;
 						var savings_msg;
@@ -296,7 +303,7 @@
 
 
 
-				console.log("submitting contact form...")
+				// console.log("submitting contact form...")
     			axios.post('/contact', {
 
     				first_name: first_name,
@@ -311,7 +318,7 @@
     			})
     			.then((response) => {
 
-    				console.log("no probs");
+    				// console.log("no probs");
     				$("#contactFormModal").modal("hide");
     				$("#contact-us").trigger("reset");
     				$("#message").fadeIn(300);
@@ -322,8 +329,8 @@
 
     			})
     			.catch((err) => {
-    				console.log("an error has occured in submitting contact");
-    				console.log(err);
+    				// console.log("an error has occured in submitting contact");
+    				// console.log(err);
     			})
 
 
@@ -528,9 +535,16 @@
 						
 						<div class="col-12 col-md-6">
 							<!-- Mobile Screen -->
-							<p class="d-block d-sm-none text-center"><span id="billableRateTitle">Billable Rate<span/><span class="fas fa-info-circle" style="margin-left:10px" data-toggle="popover" data-trigger="hover" data-placement="top" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></span></p>
+							<p id="mobileBillableRateTitle" class="d-block d-sm-none text-center">
+								<span id="billableRateTitle">Billable Rate<span/>
+								<span class="fas fa-info-circle" style="margin-left:10px;" data-toggle="popover" data-trigger="hover" data-placement="top" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></span>
+								
+							</p>
 							<!-- Larger than mobile -->
-							<p class="d-none d-sm-block mb-0"><span id="billableRateQues">What is your hourly billable rate for 1 worker?</span><span class="fas fa-info-circle" style="margin-left:10px;" data-toggle="popover" data-trigger="hover" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></span></p>
+							<p class="d-none d-sm-block mb-0">
+								<span id="billableRateQues">What is your hourly billable rate for 1 worker?</span>
+								<span class="fas fa-info-circle" style="margin-left:10px;" data-toggle="popover" data-trigger="hover" title="Billable Rate" data-content="Billable rate includes the following costs: Hourly Wage, Agency % Fee, Workers Comp. If you do NOT use an agency, please input only the hourly wage you pay a worker."></span>
+							</p>
 						</div>
 						<div class="col-12 col-md-6 no-gutters">
 							
